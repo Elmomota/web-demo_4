@@ -27,6 +27,26 @@ const routes: Routes = [
     path: 'nueva-contrasena',
     loadChildren: () => import('./pages/nueva-contrasena/nueva-contrasena.module').then( m => m.NuevaContrasenaPageModule)
   },
+  {
+    path: 'admin-dashboard',
+    loadChildren: () => import('./pages/admin/admin-dashboard/admin-dashboard.module').then( m => m.AdminDashboardPageModule)
+  },
+  {
+    path: 'admin-home',
+    loadChildren: () => import('./pages/admin/admin-home/admin-home.module').then( m => m.AdminHomePageModule)
+  },
+  {
+    path: 'usuarios',
+    loadChildren: () => import('./pages/admin/usuarios/usuarios.module').then( m => m.UsuariosPageModule)
+  },
+  {
+    path: 'perfil-usuario',
+    loadChildren: () => import('./pages/admin/perfil-usuario/perfil-usuario.module').then( m => m.PerfilUsuarioPageModule)
+  },
+  {
+    path: 'admin-usuario-editar',
+    loadChildren: () => import('./pages/admin/admin-usuario-editar/admin-usuario-editar.module').then( m => m.AdminUsuarioEditarPageModule)
+  },
 ];
 
 @NgModule({
