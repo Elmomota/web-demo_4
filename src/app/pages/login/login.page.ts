@@ -39,7 +39,7 @@ loginUsuario() {
         // Filtrado por tipo de usuario (id_tipo_usuario)
         switch (usuario.id_tipo_usuario) {
           case 1: // Admin
-            this.navCtrl.navigateForward('/admin-dashboard', {
+            this.navCtrl.navigateForward('/admin-home', {
               queryParams: { usuario: JSON.stringify(usuario) }
             });
             break;
@@ -79,12 +79,6 @@ loginUsuario() {
   });
 }
 
-
-  irRegistro() {
-    console.log('Botón de registro presionado');
-    // Redirige a la vista de registro si la tienes
-    // this.navCtrl.navigateForward('/registro');
-  }
 
   irPagina() {
      this.navCtrl.navigateForward('/recuperar-cuenta');
