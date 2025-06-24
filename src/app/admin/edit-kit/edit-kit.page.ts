@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-edit-kit',
   templateUrl: './edit-kit.page.html',
   styleUrls: ['./edit-kit.page.scss'],
+  standalone: false
 })
 export class EditKitPage implements OnInit {
 

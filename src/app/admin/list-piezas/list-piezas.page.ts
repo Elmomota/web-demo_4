@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-list-piezas',
   templateUrl: './list-piezas.page.html',
   styleUrls: ['./list-piezas.page.scss'],
+  standalone: false
 })
 export class ListPiezasPage implements OnInit {
 

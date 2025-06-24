@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-view-user',
   templateUrl: './view-user.page.html',
   styleUrls: ['./view-user.page.scss'],
+  standalone: false
 })
 export class ViewUserPage implements OnInit {
 

@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-add-pieza',
   templateUrl: './add-pieza.page.html',
   styleUrls: ['./add-pieza.page.scss'],
+  standalone: false
 })
 export class AddPiezaPage implements OnInit {
 
