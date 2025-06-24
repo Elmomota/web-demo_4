@@ -18,7 +18,7 @@ export class ListBodegaPage implements OnInit {
   constructor(private bodegasService: AdmBodegaService, 
               private modalCtrl: ModalController,
               private actionSheetController: ActionSheetController, 
-              private alertCtrl: AlertController) { }
+              private alertCtrl: AlertController) { }  
 
   
   ngOnInit() {
