@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AdmBodegaService {
-  private baseUrl = `${environment.apiUrl}/bodegas`;
+  private baseUrl = `${environment.apiUrl}/api/bodegas`;
 
   constructor(private http: HttpClient) {}
 

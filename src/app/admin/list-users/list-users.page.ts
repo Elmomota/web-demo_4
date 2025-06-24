@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-list-users',
   templateUrl: './list-users.page.html',
   styleUrls: ['./list-users.page.scss'],
+  standalone: false
 })
 export class ListUsersPage implements OnInit {
 
