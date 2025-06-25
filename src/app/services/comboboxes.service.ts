@@ -48,4 +48,9 @@ export class ComboboxesService {
   getAlmacenes(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/almacenes`);
   }
+
+  getPiezas(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.baseUrl}/piezas`);
 }
+}
+
