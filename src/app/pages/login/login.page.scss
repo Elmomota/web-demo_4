@@ -1,9 +1,12 @@
-.background-image {
-  background: url('/assets/fondo-login.jpg') no-repeat center center/cover;
+html, body, ion-app, ion-content {
   height: 100%;
+}
+
+.fondo{
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .login-card {

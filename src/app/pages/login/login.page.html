@@ -1,9 +1,10 @@
 <ion-header [translucent]="true">
 </ion-header>
 
-<ion-content class="background-image">
+<ion-content>
+  <div class="fondo">
   <div class="login-card">
-    <img src="assets/logo.png" alt="Logo" class="logo" />
+    <img src="" alt="Logo" class="logo" />
 
     <form (ngSubmit)="loginUsuario()" #loginForm="ngForm" novalidate>
       <ion-item class="custom-input">
@@ -34,6 +35,7 @@
     <div class="ion-text-center ion-padding-top">
       <a (click)="irPagina()">¿Problemas con tu cuenta?</a>
     </div>
+  </div>
   </div>
 </ion-content>
 
