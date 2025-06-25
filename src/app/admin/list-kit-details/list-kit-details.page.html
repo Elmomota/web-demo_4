@@ -16,7 +16,7 @@
   <ion-list>
     <ion-item *ngFor="let p of piezas">
       <ion-label>
-        <h2>{{ p.nombre_pieza }}</h2>
+        <h2>ID: {{p.id_pieza}} || {{ p.nombre_pieza }}</h2>
         <p>{{ p.descripcion_pieza }}</p>
         <p><strong>Cantidad:</strong> {{ p.cantidad }}</p>
       </ion-label>
