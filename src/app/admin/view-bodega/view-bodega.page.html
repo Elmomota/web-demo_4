@@ -1,13 +1,44 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>viewBodega</ion-title>
+    <ion-title>Visualizar Almacén</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrar()">Cerrar</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">viewBodega</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input [(ngModel)]="nombre" [disabled]="isDisabled"></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label position="floating">Dirección</ion-label>
+      <ion-input [(ngModel)]="direccion" [disabled]="isDisabled"></ion-input>
+
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label>Región</ion-label>
+      <ion-select [(ngModel)]="id_region" (ionChange)="onRegionChange()" [disabled]="isDisabled">
+        <ion-select-option *ngFor="let r of regiones" [value]="r.id_region">
+          {{ r.nombre }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Comuna</ion-label>
+      <ion-select [(ngModel)]="id_comuna" [disabled]="isDisabled">
+        <ion-select-option *ngFor="let c of comunas" [value]="c.id_comuna">
+          {{ c.nombre }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
 </ion-content>
