@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Bodegas</ion-title>
+    <ion-title>Almacenes</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="abrirModalAgregar()">
         <ion-icon name="add-circle-outline"></ion-icon>
@@ -11,13 +11,19 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let bodega of bodegas">
+    <ion-item *ngFor="let bodega of bodegas" [color]="bodega.estado ? '' : 'light'">
       <ion-label>
         <h2>{{ bodega.nombre }}</h2>
         <p>{{ bodega.direccion }} - {{ bodega.nombre_comuna }} ({{ bodega.nombre_region }})</p>
+        <p *ngIf="!bodega.estado" style="color: red;">[ELIMINADO]</p>
       </ion-label>
-      <ion-button fill="clear" color="warning" (click)="abrirModalEditar(bodega)">Editar</ion-button>
-      <ion-button fill="clear" color="danger" (click)="eliminar(bodega)">Eliminar</ion-button>
+      <ion-button fill="solid" color="warning" slot="end" (click)="presentActionSheet(bodega)">
+        Más acciones
+      </ion-button>
+    </ion-item>
+
+    <ion-item *ngIf="bodegas.length === 0">
+      <ion-label>No hay bodegas registradas.</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>

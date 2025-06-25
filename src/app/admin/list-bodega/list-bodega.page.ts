@@ -89,34 +89,41 @@ export class ListBodegaPage implements OnInit {
     await alerta.present();
   }
 
-  async presentActionSheet(bodega: any) {
-    const actionSheet = await this.actionSheetController.create({
-      header: 'Opciones',
-      buttons: [
-        {
-          text: 'Modificar',
-          icon: 'create-outline',
-          handler: () => this.abrirModalEditar(bodega)
-        },
-        {
-          text: 'Visualizar',
-          icon: 'eye-outline',
-          handler: () => this.abrirVisualizar(bodega)
-        },
-        {
-          text: 'Eliminar',
-          role: 'destructive',
-          icon: 'trash-outline',
-          handler: () => this.eliminar(bodega)
-        },
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          icon: 'close'
-        }
-      ]
+async presentActionSheet(bodega: any) {
+  const buttons: any[] = [
+    {
+      text: 'Visualizar',
+      icon: 'eye-outline',
+      handler: () => this.abrirVisualizar(bodega)
+    }
+  ];
+
+  // Solo mostrar acciones si el almacén está activo
+  if (bodega.estado) {
+    buttons.unshift({
+      text: 'Modificar',
+      icon: 'create-outline',
+      handler: () => this.abrirModalEditar(bodega)
     });
-    await actionSheet.present();
+    buttons.push({
+      text: 'Eliminar',
+      role: 'destructive',
+      icon: 'trash-outline',
+      handler: () => this.eliminar(bodega)
+    });
   }
+
+  buttons.push({
+    text: 'Cancelar',
+    role: 'cancel',
+    icon: 'close'
+  });
+
+  const actionSheet = await this.actionSheetController.create({
+    header: 'Opciones',
+    buttons
+  });
+  await actionSheet.present();
+}
 
 }
