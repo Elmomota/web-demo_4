@@ -12,6 +12,21 @@
           <ion-icon slot="start" name="people-outline"></ion-icon>
           <ion-label>Usuarios</ion-label>
         </ion-item>
+
+        <ion-item routerLink="/list-bodega">
+          <ion-icon slot="start" name="business-outline"></ion-icon>
+          <ion-label>Bodegas</ion-label>
+        </ion-item>
+
+        <ion-item routerLink="/list-piezas">
+          <ion-icon slot="start" name="hardware-chip-outline"></ion-icon>
+          <ion-label>Piezas</ion-label>
+        </ion-item>
+
+        <ion-item routerLink="/list-kits">
+          <ion-icon slot="start" name="cube-outline"></ion-icon>
+          <ion-label>Kits</ion-label>
+        </ion-item>
       </ion-list>
 
       <ion-button expand="full" color="danger" (click)="logout()">
