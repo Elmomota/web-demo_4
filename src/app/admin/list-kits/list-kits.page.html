@@ -1,13 +1,29 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>listKits</ion-title>
+    <ion-title>Kits</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="abrirModalAgregar()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">listKits</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let kit of kits" [color]="kit.estado ? '' : 'light'">
+      <ion-label>
+        <h2>ID {{kit.id_kit}} : {{ kit.nombre }}</h2>
+        <p>{{ kit.descripcion }}</p>
+        <p *ngIf="!kit.estado" style="color: red;">[INACTIVO]</p>
+      </ion-label>
+      <ion-button fill="solid" color="warning" slot="end" (click)="presentActionSheet(kit)">
+        Más acciones
+      </ion-button>
+    </ion-item>
+
+    <ion-item *ngIf="kits.length === 0">
+      <ion-label>No hay kits registrados.</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

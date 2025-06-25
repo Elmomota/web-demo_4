@@ -1,13 +1,35 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>listKitDetails</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/list-kits"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ nombre_kit }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="abrirModalAgregar()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">listKitDetails</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let p of piezas">
+      <ion-label>
+        <h2>{{ p.nombre_pieza }}</h2>
+        <p>{{ p.descripcion_pieza }}</p>
+        <p><strong>Cantidad:</strong> {{ p.cantidad }}</p>
+      </ion-label>
+      <ion-button fill="solid" color="warning" slot="end" (click)="presentActionSheet(p)">
+        Más acciones
+      </ion-button>
+    </ion-item>
+
+    <ion-item *ngIf="piezas.length === 0">
+      <ion-label>
+        <h5>Este kit no contiene piezas.</h5>
+        <p>Presiona el botón (+) para agregar una.</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-view-kit',
@@ -7,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   standalone: false
 })
 export class ViewKitPage implements OnInit {
+    kit: any;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(
+    private navParams: NavParams,
+    private modalCtrl: ModalController
+  ) {
+    this.kit = this.navParams.get('kit');
   }
 
+  ngOnInit() {}
+
+  cerrar() {
+    this.modalCtrl.dismiss();
+  }
 }
