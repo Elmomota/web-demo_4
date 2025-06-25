@@ -1,0 +1,37 @@
+.background-image {
+  background: url('/assets/fondo-login.jpg') no-repeat center center/cover;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  background-color: #4aa5df;
+  padding: 30px 20px;
+  width: 90%;
+  max-width: 350px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.logo {
+  width: 100px;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.custom-input {
+  --background: #1e1e1e;
+  --color: #fff;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.login-button {
+  --background: #1d63ff;
+  color: #fff;
+  margin-top: 15px;
+}
