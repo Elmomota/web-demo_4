@@ -1,13 +1,71 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>viewPieza</ion-title>
+    <ion-title>Ver Pieza</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrar()">Cerrar</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">viewPieza</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+
+    <!-- Imagen centrada y grande -->
+    <div style="display: flex; justify-content: center; margin-top: 16px;" *ngIf="pieza.imagenOut">
+      <img [src]="'data:image/*;base64,' + pieza.imagenOut" style="width: 300px; height: 300px; object-fit: contain; border-radius: 16px; border: 1px solid #ccc;" />
+    </div>
+
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input [value]="pieza.nombre" disabled></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Descripción</ion-label>
+      <ion-input [value]="pieza.descripcion" disabled></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">N° Serie</ion-label>
+      <ion-input [value]="pieza.numero_serie" disabled></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Stock Mínimo</ion-label>
+      <ion-input [value]="pieza.stock_minimo" disabled type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Fecha Vencimiento</ion-label>
+      <ion-input [value]="pieza.fecha_vencimiento" disabled></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Marca</ion-label>
+      <ion-select [value]="pieza.id_marca" disabled>
+        <ion-select-option *ngFor="let m of marcas" [value]="m.id_marca">
+          {{ m.nombre }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Categoría</ion-label>
+      <ion-select [value]="pieza.id_categoria" disabled>
+        <ion-select-option *ngFor="let c of categorias" [value]="c.id_categoria">
+          {{ c.nombre }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Almacén</ion-label>
+      <ion-select [value]="pieza.id_almacen" disabled>
+      <ion-select-option *ngFor="let a of almacenes" [value]="a.id_almacen">
+        {{ a.nombre }}
+      </ion-select-option>
+    </ion-select>
+    </ion-item>
+
+  </ion-list>
 </ion-content>
