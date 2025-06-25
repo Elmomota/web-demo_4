@@ -7,8 +7,23 @@
 <ion-content *ngIf="usuarioForm">
   <form [formGroup]="usuarioForm" (ngSubmit)="guardarCambios()" class="ion-padding">
     <ion-item>
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input formControlName="nombre"></ion-input>
+      <ion-label position="floating">Primer Nombre</ion-label>
+      <ion-input formControlName="p_nombre"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Segundo Nombre</ion-label>
+      <ion-input formControlName="s_nombre"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Apellido Paterno</ion-label>
+      <ion-input formControlName="a_paterno"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Apellido Materno</ion-label>
+      <ion-input formControlName="a_materno"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -22,18 +37,39 @@
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">ID Comuna</ion-label>
-      <ion-input formControlName="id_comuna" type="number"></ion-input>
+      <ion-label>Región</ion-label>
+      <ion-select formControlName="id_region" (ionChange)="cargarComunas($event.detail.value)">
+        <ion-select-option *ngFor="let region of regiones" [value]="region.id_region">
+          {{ region.nombre }}
+        </ion-select-option>
+      </ion-select>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">ID Tipo Usuario</ion-label>
-      <ion-input formControlName="id_tipo_usuario" type="number"></ion-input>
+      <ion-label>Comuna</ion-label>
+      <ion-select formControlName="id_comuna">
+        <ion-select-option *ngFor="let comuna of comunas" [value]="comuna.id_comuna">
+          {{ comuna.nombre }}
+        </ion-select-option>
+      </ion-select>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">ID Almacén</ion-label>
-      <ion-input formControlName="id_almacen" type="number"></ion-input>
+      <ion-label>Tipo de Usuario</ion-label>
+      <ion-select formControlName="id_tipo_usuario">
+        <ion-select-option *ngFor="let tipo of tiposUsuario" [value]="tipo.id_tipo_usuario">
+          {{ tipo.nombre }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Almacén</ion-label>
+      <ion-select formControlName="id_almacen">
+        <ion-select-option *ngFor="let alm of almacenes" [value]="alm.id_almacen">
+          {{ alm.nombre }}
+        </ion-select-option>
+      </ion-select>
     </ion-item>
 
     <ion-item>
@@ -41,6 +77,8 @@
       <ion-toggle formControlName="estado"></ion-toggle>
     </ion-item>
 
-    <ion-button expand="block" type="submit" [disabled]="usuarioForm.invalid">Guardar Cambios</ion-button>
+    <ion-button expand="block" type="submit" [disabled]="usuarioForm.invalid">
+      Guardar Cambios
+    </ion-button>
   </form>
 </ion-content>

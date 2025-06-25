@@ -1,6 +1,9 @@
 export interface Usuario {
   id_usuario: number;
-  nombre: string;
+  p_nombre : string
+  s_nombre: string | null
+  a_paterno: string
+  a_materno: string | null
   correo: string;
   direccion?: string;
   id_comuna: number;
