@@ -139,12 +139,14 @@ async presentActionSheet(kit: any) {
   }
 
 
-  irADetalleKit(kit: any) {
+irADetalleKit(kit: any) {
 this.router.navigate(['/list-kit-details'], {
   state: {
     id_kit: kit.id_kit,
     nombre: kit.nombre,
-    id_usuario: this.id_usuario
+    id_usuario: this.id_usuario,
+    estado: kit.estado
+
   }});
 }
 

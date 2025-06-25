@@ -48,14 +48,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/admin/admin-usuario-editar/admin-usuario-editar.module').then( m => m.AdminUsuarioEditarPageModule)
   },
   {
-    path: 'main-adm',
-    loadChildren: () => import('./admin/main-adm/main-adm.module').then( m => m.MainAdmPageModule)
-  },
-  {
-    path: 'main-adm',
-    loadChildren: () => import('./admin/main-adm/main-adm.module').then( m => m.MainAdmPageModule)
-  },
-  {
     path: 'list-bodega',
     loadChildren: () => import('./admin/list-bodega/list-bodega.module').then( m => m.ListBodegaPageModule)
   },

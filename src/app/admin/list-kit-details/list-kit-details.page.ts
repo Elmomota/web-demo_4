@@ -17,6 +17,7 @@ export class ListKitDetailsPage implements OnInit {
   id_usuario: number = 1;
   nombre_kit: string = '';
   piezas: any[] = [];
+  estado: boolean = true; 
 
   constructor(
     private route: ActivatedRoute,
@@ -32,6 +33,7 @@ export class ListKitDetailsPage implements OnInit {
       this.id_kit = state['id_kit'];
       this.id_usuario = state['id_usuario'];
       this.nombre_kit = state['nombre'];
+      this.estado = state['estado'];
     }
   }
 
@@ -47,6 +49,11 @@ export class ListKitDetailsPage implements OnInit {
   }
 
   async abrirModalAgregar() {
+    if (!this.estado) {
+      this.presentAlert('Kit desactivado', 'No se pueden agregar piezas a un kit inactivo.');
+      return;
+    }
+
     const modal = await this.modalCtrl.create({
       component: AddKitDetailPage,
       componentProps: {
@@ -61,14 +68,10 @@ export class ListKitDetailsPage implements OnInit {
   }
 
   async presentActionSheet(p: any) {
-    const actionSheet = await this.actionSheetCtrl.create({
-      header: p.nombre_pieza,
-      buttons: [
-        {
-          text: 'Ver pieza',
-          icon: 'eye',
-          handler: () => this.verPieza(p)
-        },
+    const botones: any[] = [];
+
+    if (this.estado) {
+      botones.push(
         {
           text: 'Editar cantidad',
           icon: 'create',
@@ -79,24 +82,30 @@ export class ListKitDetailsPage implements OnInit {
           role: 'destructive',
           icon: 'trash',
           handler: () => this.confirmarEliminacion(p)
-        },
-        {
-          text: 'Cancelar',
-          icon: 'close',
-          role: 'cancel'
         }
-      ]
+      );
+    }
+
+    botones.push({
+      text: 'Cancelar',
+      icon: 'close',
+      role: 'cancel'
+    });
+
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: p.nombre_pieza,
+      buttons: botones
     });
 
     await actionSheet.present();
   }
 
-  verPieza(p: any) {
-    // Por ahora solo log, puedes enlazar a `view-pieza` si quieres
-    console.log('Ver pieza:', p);
-  }
-
   async abrirModalEditar(p: any) {
+    if (!this.estado) {
+      this.presentAlert('Kit desactivado', 'No se pueden editar piezas en un kit inactivo.');
+      return;
+    }
+
     const modal = await this.modalCtrl.create({
       component: EdittKitDetailsPage,
       componentProps: {
@@ -112,9 +121,14 @@ export class ListKitDetailsPage implements OnInit {
   }
 
   async confirmarEliminacion(p: any) {
+    if (!this.estado) {
+      this.presentAlert('Kit desactivado', 'No se pueden eliminar piezas de un kit inactivo.');
+      return;
+    }
+
     const alert = await this.alertCtrl.create({
       header: 'Confirmar',
-      message: `¿Eliminar la pieza <strong>${p.nombre_pieza}</strong> del kit?`,
+      message: `¿Eliminar la pieza ${p.nombre_pieza} del kit?`,
       buttons: [
         { text: 'Cancelar', role: 'cancel' },
         {
@@ -127,6 +141,11 @@ export class ListKitDetailsPage implements OnInit {
   }
 
   eliminar(p: any) {
+    if (!this.estado) {
+      this.presentAlert('Kit desactivado', 'No se puede eliminar esta pieza porque el kit está inactivo.');
+      return;
+    }
+
     this.piezaService.eliminarPiezaDeKit(this.id_usuario, this.id_kit, p.id_pieza).subscribe({
       next: () => this.cargarDetalle(),
       error: (err) => {
