@@ -16,8 +16,13 @@
         <h2>{{ bodega.nombre }}</h2>
         <p>{{ bodega.direccion }} - {{ bodega.nombre_comuna }} ({{ bodega.nombre_region }})</p>
       </ion-label>
-      <ion-button fill="clear" color="warning" (click)="abrirModalEditar(bodega)">Editar</ion-button>
-      <ion-button fill="clear" color="danger" (click)="eliminar(bodega)">Eliminar</ion-button>
+      <ion-button fill="solid" color="warning" slot="end" (click)="presentActionSheet(bodega)">
+        Más acciones
+      </ion-button>
+    </ion-item>
+
+    <ion-item *ngIf="bodegas.length === 0">
+      <ion-label>No hay bodegas registradas.</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
