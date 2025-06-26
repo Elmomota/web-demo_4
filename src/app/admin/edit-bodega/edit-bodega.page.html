@@ -1,27 +1,32 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Editar Almacén</ion-title>
+    <ion-buttons slot="start">
+      <ion-button class="boton-cerrar" (click)="cerrar()">Cerrar</ion-button>
+    </ion-buttons>
+    <ion-title class="titulo">Editar Almacén</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="cerrar()">Cerrar</ion-button>
+      <ion-button class="boton" expand="full" (click)="guardar()">Guardar Cambios</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <div class="fondo">
+  <div class="card">
+  <ion-list class="fondo-lista">
 
-    <ion-item>
+    <ion-item class="item">
       <ion-label position="floating">Nombre</ion-label>
       <ion-input [(ngModel)]="nombre"></ion-input>
       <ion-button fill="outline" slot="end" (click)="clearName()">
           <ion-icon name="trash-bin-sharp" color="danger"></ion-icon>
         </ion-button>
-    </ion-item>
+    </ion-item >
     <ion-text color="danger" *ngIf="nombreError">
       <p class="ion-padding-start">{{ nombreError }}</p>
     </ion-text>
 
-    <ion-item>
+    <ion-item class="item">
       <ion-label position="floating">Dirección</ion-label>
       <ion-input [(ngModel)]="direccion"></ion-input>
       <ion-button fill="outline" slot="end" (click)="clearDir()">
@@ -32,7 +37,7 @@
       <p class="ion-padding-start">{{ direccionError }}</p>
     </ion-text>
 
-    <ion-item>
+    <ion-item class="item">
       <ion-label>Región</ion-label>
       <ion-select [(ngModel)]="id_region" (ionChange)="onRegionChange()">
         <ion-select-option *ngFor="let r of regiones" [value]="r.id_region">
@@ -44,7 +49,7 @@
       <p class="ion-padding-start">{{ errorRegion }}</p>
     </ion-text>    
 
-    <ion-item>
+    <ion-item class="item">
       <ion-label>Comuna</ion-label>
       <ion-select [(ngModel)]="id_comuna">
         <ion-select-option *ngFor="let c of comunas" [value]="c.id_comuna">
@@ -56,7 +61,7 @@
       <p class="ion-padding-start">{{ errorComuna }}</p>
     </ion-text>
 
-    <ion-button expand="full" (click)="guardar()">Guardar Cambios</ion-button>
-
   </ion-list>
+  </div>
+  </div>
 </ion-content>
