@@ -37,4 +37,8 @@ export class UsuariosPage implements OnInit {
     queryParams: { usuario: JSON.stringify(user) }
   });
 }
+irACrearUsuario() {
+  this.navCtrl.navigateForward('/admin-usuario-crear');
+}
+
 }

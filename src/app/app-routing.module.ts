@@ -131,6 +131,10 @@ const routes: Routes = [
     path: 'add-kit-detail',
     loadChildren: () => import('./admin/add-kit-detail/add-kit-detail.module').then( m => m.AddKitDetailPageModule)
   },
+  {
+    path: 'admin-usuario-crear',
+    loadChildren: () => import('./pages/admin/admin-usuario-crear/admin-usuario-crear.module').then( m => m.AdminUsuarioCrearPageModule)
+  },
 
 ];
 
