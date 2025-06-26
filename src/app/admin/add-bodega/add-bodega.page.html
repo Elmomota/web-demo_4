@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Agregar Almacén</ion-title>
+  <ion-toolbar class="fondo-nav">
+    <ion-title class="titulo">Agregar Almacén</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="cerrar()">Cerrar</ion-button>
     </ion-buttons>
@@ -8,8 +8,10 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item>
+  <div class="fondo">
+  <div class="card">
+  <ion-list class="fondo-lista">
+    <ion-item class="item">
       <ion-label position="floating">Nombre</ion-label>
       <ion-input [(ngModel)]="nombre"></ion-input>
       <ion-button fill="outline" slot="end" (click)="clearName()">
@@ -20,7 +22,7 @@
       <p class="ion-padding-start">{{ nombreError }}</p>
     </ion-text>
 
-    <ion-item>
+    <ion-item class="item">
       <ion-label position="floating">Dirección</ion-label>
       <ion-input [(ngModel)]="direccion"></ion-input>
       <ion-button fill="outline" slot="end" (click)="clearDir()">
@@ -31,7 +33,7 @@
       <p class="ion-padding-start">{{ direccionError }}</p>
     </ion-text>
 
-    <ion-item>
+    <ion-item class="item">
       <ion-label>Región</ion-label>
       <ion-select [(ngModel)]="id_region" (ionChange)="onRegionChange()">
         <ion-select-option *ngFor="let r of regiones" [value]="r.id_region">{{ r.nombre }}</ion-select-option>
@@ -41,7 +43,7 @@
       <p class="ion-padding-start">{{ errorRegion }}</p>
     </ion-text>
 
-    <ion-item>
+    <ion-item class="item">
       <ion-label>Comuna</ion-label>
       <ion-select [(ngModel)]="id_comuna">
         <ion-select-option *ngFor="let c of comunas" [value]="c.id_comuna">{{ c.nombre }}</ion-select-option>
@@ -51,6 +53,8 @@
       <p class="ion-padding-start">{{ errorComuna }}</p>
     </ion-text>
 
-    <ion-button expand="full" (click)="guardar()">Agregar</ion-button>
+    <ion-button class="boton" expand="full" (click)="guardar()">Agregar</ion-button>
   </ion-list>
+  </div>
+  </div>
 </ion-content>
