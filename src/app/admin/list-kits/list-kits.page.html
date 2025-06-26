@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/admin-home"></ion-back-button>
     </ion-buttons>
-    <ion-title>Kits</ion-title>
+    <ion-title class="titulo">Kits</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="abrirModalAgregar()">
         <ion-icon name="add-circle-outline"></ion-icon>
@@ -13,6 +13,8 @@
 </ion-header>
 
 <ion-content>
+  <div class="fondo">
+  <div class="card">
   <ion-list>
     <ion-item *ngFor="let kit of kits" [color]="kit.estado ? '' : 'light'">
       <ion-label>
@@ -29,4 +31,6 @@
       <ion-label>No hay kits registrados.</ion-label>
     </ion-item>
   </ion-list>
+  </div>
+  </div>
 </ion-content>

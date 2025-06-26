@@ -1,25 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Ver Kit</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="cerrar()">Cerrar</ion-button>
+    <ion-buttons slot="start">
+      <ion-button class="boton-cerrar" (click)="cerrar()">Cerrar</ion-button>
     </ion-buttons>
+    <ion-title class="titulo">Ver Kit</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <div class="fondo">
+  <div class="card">
+  <ion-list class="fondo-lista">
 
-    <ion-item>
+    <ion-item class="item">
       <ion-label position="stacked">Nombre</ion-label>
       <ion-input [value]="kit?.nombre" disabled></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item class="item">
       <ion-label position="stacked">Descripción</ion-label>
       <ion-textarea [value]="kit?.descripcion" disabled auto-grow="true"></ion-textarea>
     </ion-item>
 
-
   </ion-list>
+  </div>
+  </div>
 </ion-content>

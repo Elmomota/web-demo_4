@@ -19,8 +19,10 @@
     background-color: #5b607a;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100%;
+    align-items: flex-start;
+    min-height: 100%;
+    padding: 20px 0;
+    box-sizing: border-box;
 }
 
 .card{
