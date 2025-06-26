@@ -1,46 +1,47 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Ver Pieza</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="cerrar()">Cerrar</ion-button>
+    <ion-buttons slot="start">
+      <ion-button class="boton-cerrar" (click)="cerrar()">Cerrar</ion-button>
     </ion-buttons>
+    <ion-title class="titulo">Ver Pieza</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-
+  <div class="fondo">
+  <div class="card">
+  <ion-list class="fondo-lista">
     <!-- Imagen centrada y grande -->
-    <div style="display: flex; justify-content: center; margin-top: 16px;" *ngIf="pieza.imagenOut">
-      <img [src]="'data:image/*;base64,' + pieza.imagenOut" style="width: 300px; height: 300px; object-fit: contain; border-radius: 16px; border: 1px solid #ccc;" />
+    <div class="contenedor-imagen" *ngIf="pieza.imagenOut">
+      <img class="imagen" [src]="'data:image/*;base64,' + pieza.imagenOut" alt="imagen" />
     </div>
 
-    <ion-item>
+    <ion-item class="item">
       <ion-label position="stacked">Nombre</ion-label>
       <ion-input [value]="pieza.nombre" disabled></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item class="item">
       <ion-label position="stacked">Descripción</ion-label>
       <ion-input [value]="pieza.descripcion" disabled></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item class="item">
       <ion-label position="stacked">N° Serie</ion-label>
       <ion-input [value]="pieza.numero_serie" disabled></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item class="item">
       <ion-label position="stacked">Stock Mínimo</ion-label>
       <ion-input [value]="pieza.stock_minimo" disabled type="number"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item class="item">
       <ion-label position="stacked">Fecha Vencimiento</ion-label>
       <ion-input [value]="pieza.fecha_vencimiento" disabled></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item class="item">
       <ion-label position="stacked">Marca</ion-label>
       <ion-select [value]="pieza.id_marca" disabled>
         <ion-select-option *ngFor="let m of marcas" [value]="m.id_marca">
@@ -49,7 +50,7 @@
       </ion-select>
     </ion-item>
 
-    <ion-item>
+    <ion-item class="item">
       <ion-label position="stacked">Categoría</ion-label>
       <ion-select [value]="pieza.id_categoria" disabled>
         <ion-select-option *ngFor="let c of categorias" [value]="c.id_categoria">
@@ -58,7 +59,7 @@
       </ion-select>
     </ion-item>
 
-    <ion-item>
+    <ion-item class="item">
       <ion-label position="stacked">Almacén</ion-label>
       <ion-select [value]="pieza.id_almacen" disabled>
       <ion-select-option *ngFor="let a of almacenes" [value]="a.id_almacen">
@@ -66,6 +67,7 @@
       </ion-select-option>
     </ion-select>
     </ion-item>
-
   </ion-list>
+  </div>
+  </div>
 </ion-content>
