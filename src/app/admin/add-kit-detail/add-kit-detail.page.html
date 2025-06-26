@@ -1,15 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Agregar pieza al kit</ion-title>
+    <ion-buttons slot="start">
+      <ion-button class="boton-cerrar" (click)="cerrar()">Cerrar</ion-button>
+    </ion-buttons>
+    <ion-title class="titulo">Agregar pieza al kit</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="cerrar()">Cerrar</ion-button>
+      <ion-button class="boton" expand="block" (click)="guardar()">Agregar al kit</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-
+  <div class="fondo">
+  <div class="card">
+  <ion-list class="fondo-lista">
     <!-- Selección de pieza -->
     <ion-item>
       <ion-label>Pieza</ion-label>
@@ -34,9 +38,7 @@
     <ion-text color="danger" *ngIf="errores.cantidad">
       <p class="ion-padding-start">{{ errores.cantidad }}</p>
     </ion-text>
-
-    <!-- Botón Guardar -->
-    <ion-button expand="block" color="primary" (click)="guardar()">Agregar al kit</ion-button>
-
   </ion-list>
+  </div>
+  </div>
 </ion-content>
