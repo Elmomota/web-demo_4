@@ -20,4 +20,20 @@ export class AdminUsuarioService {
   editarUsuario(usuario: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/editar`, usuario);
   }
+  eliminarUsuario(id_usuario: number): Observable<any> {
+  return this.http.put(`${this.apiUrl}/editar`, {
+    id_usuario,
+    estado: false
+  });
+}
+desactivarUsuario(id_usuario: number): Observable<any> {
+  return this.http.put(`${this.apiUrl}/desactivar`, null, {
+    params: { id_usuario }
+  });
+}
+crearUsuario(usuario: any): Observable<any> {
+  return this.http.post(`${this.apiUrl}/crear-usuario`, usuario);
+}
+
+
 }

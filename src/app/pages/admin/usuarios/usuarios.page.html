@@ -1,19 +1,37 @@
-<!-- src/app/pages/usuarios/usuarios.page.html -->
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Usuarios</ion-title>
+    <ion-buttons slot="end">
+      <ion-button 
+        (click)="irACrearUsuario()" 
+        color="warning"
+        class="crear-usuario-btn"
+      >
+        <ion-icon name="person-add-outline" slot="start"></ion-icon>
+        Crear
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content>
   <ion-list *ngIf="usuarios.length > 0; else noUsuarios">
-    <ion-item *ngFor="let user of usuarios" (click)="verPerfil(user)">
+    <ion-item 
+      *ngFor="let user of usuarios"
+      [button]="user.estado"
+      [detail]="false"
+      (click)="user.estado && verPerfil(user)"
+      [class.item-disabled]="!user.estado"
+    >
       <ion-label>
         <h2>{{ user.nombre }}</h2>
         <p>{{ user.correo }}</p>
       </ion-label>
-      <ion-badge *ngIf="user.estado" color="success">Activo</ion-badge>
-      <ion-badge *ngIf="!user.estado" color="danger">Inactivo</ion-badge>
+      <ion-badge [color]="user.estado ? 'success' : 'danger'">
+        {{ user.estado ? 'Activo' : 'Inactivo' }}
+      </ion-badge>
     </ion-item>
   </ion-list>
 

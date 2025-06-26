@@ -1,11 +1,12 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Editar Usuario</ion-title>
+    <ion-title>Crear Usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content *ngIf="usuarioForm">
-  <form [formGroup]="usuarioForm" (ngSubmit)="guardarCambios()" class="ion-padding">
+  <form [formGroup]="usuarioForm" (ngSubmit)="crearUsuario()" class="ion-padding">
+
     <ion-item>
       <ion-label position="floating">Primer Nombre</ion-label>
       <ion-input formControlName="p_nombre"></ion-input>
@@ -28,8 +29,22 @@
 
     <ion-item>
       <ion-label position="floating">Correo</ion-label>
-      <ion-input formControlName="correo" type="email"></ion-input>
+      <ion-input type="email" formControlName="correo"></ion-input>
     </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" formControlName="contrasena"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Confirmar Contraseña</ion-label>
+      <ion-input type="password" formControlName="confirmar_contrasena"></ion-input>
+    </ion-item>
+
+    <ion-text color="danger" *ngIf="coincidenciasInvalidas()">
+      <p class="ion-padding-start">Las contraseñas no coinciden.</p>
+    </ion-text>
 
     <ion-item>
       <ion-label position="floating">Dirección</ion-label>
@@ -72,13 +87,8 @@
       </ion-select>
     </ion-item>
 
-    <ion-item>
-      <ion-label>Estado</ion-label>
-      <ion-toggle formControlName="estado"></ion-toggle>
-    </ion-item>
-
     <ion-button expand="block" type="submit" [disabled]="usuarioForm.invalid">
-      Guardar Cambios
+      Crear Usuario
     </ion-button>
   </form>
 </ion-content>
