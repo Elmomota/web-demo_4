@@ -1,19 +1,20 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Verificar Código</ion-title>
-  </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-text>
-    <h2>Ingresa el código</h2>
-    <p>Revisa tu correo y escribe el código de 6 dígitos que te enviamos.</p>
-  </ion-text>
+  <div class="fondo">
+    <div class="card">
+      <ion-text>
+        <h2>Ingresa el código</h2>
+        <p>Revisa tu correo y escribe el código de 6 dígitos que te enviamos.</p>
+      </ion-text>
 
-  <ion-item>
-    <ion-label position="floating">Código de verificación</ion-label>
-    <ion-input type="text" maxlength="6" [(ngModel)]="codigoIngresado"></ion-input>
-  </ion-item>
+      <ion-item>
+        <ion-label class="text" position="floating">Código de verificación</ion-label>
+        <ion-input type="text" maxlength="6" [(ngModel)]="codigoIngresado"></ion-input>
+      </ion-item>
 
-  <ion-button expand="block" (click)="verificarCodigo()">Verificar</ion-button>
+        <ion-button class="verificar-button" expand="block" (click)="verificarCodigo()">Verificar</ion-button>
+    </div>
+  </div>
 </ion-content>
