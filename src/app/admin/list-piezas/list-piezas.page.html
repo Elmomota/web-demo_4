@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/admin-home"></ion-back-button>
     </ion-buttons>
-    <ion-title>Piezas</ion-title>
+    <ion-title class="titulo">Piezas</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="abrirModalAgregar()">
         <ion-icon name="add-circle-outline"></ion-icon>
@@ -13,10 +13,12 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let pieza of piezas" [color]="pieza.estado ? '' : 'light'">
-      <ion-avatar slot="start" *ngIf="pieza.imagenOut" style="width: 100px; height: 100px;">
-        <img [src]="'data:image/*;base64,' + pieza.imagenOut" style="width: 100%; height: 100%; object-fit: cover;" />
+  <div class="fondo">
+  <div class="card">
+  <ion-list class="fondo-lista">
+    <ion-item class="item" *ngFor="let pieza of piezas" [color]="pieza.estado ? '' : 'light'">
+      <ion-avatar class="fondo-imagen" slot="start" *ngIf="pieza.imagenOut" style="width: 100px; height: 100px;">
+        <img class="imagen.pieza" alt="imagen" [src]="'data:image/*;base64,' + pieza.imagenOut" style="width: 100%; height: 100%; object-fit: cover;" />
       </ion-avatar>
 
       <ion-label>
@@ -30,8 +32,10 @@
       </ion-button>
     </ion-item>
 
-    <ion-item *ngIf="piezas.length === 0">
+    <ion-item class="item" *ngIf="piezas.length === 0">
       <ion-label>No hay piezas registradas.</ion-label>
     </ion-item>
   </ion-list>
+  </div>
+  </div>
 </ion-content>
