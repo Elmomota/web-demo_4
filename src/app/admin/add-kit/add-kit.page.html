@@ -1,17 +1,22 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Agregar Kit</ion-title>
+    <ion-buttons slot="start">
+      <ion-button class="boton-cerrar" (click)="cerrar()">Cerrar</ion-button>
+    </ion-buttons>
+    <ion-title class="titulo">Agregar Kit</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="cerrar()">Cerrar</ion-button>
+      <!-- Guardar -->
+      <ion-button class="boton" expand="block" (click)="guardar()">Guardar Kit</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-
+  <div class="fondo">
+  <div class="card">
+  <ion-list class="fondo-lista">
     <!-- Nombre -->
-    <ion-item>
+    <ion-item class="item">
       <ion-label position="floating">Nombre del Kit</ion-label>
       <ion-input [(ngModel)]="nombre"></ion-input>
       <ion-button fill="clear" slot="end" (click)="clearNombre()">
@@ -23,7 +28,7 @@
     </ion-text>
 
     <!-- Descripción -->
-    <ion-item>
+    <ion-item class="item">
       <ion-label position="floating">Descripción (opcional)</ion-label>
       <ion-textarea rows="4" [(ngModel)]="descripcion"></ion-textarea>
       <ion-button fill="clear" slot="end" (click)="clearDescripcion()">
@@ -33,9 +38,7 @@
     <ion-text color="danger" *ngIf="errores.descripcion">
       <p class="ion-padding-start">{{ errores.descripcion }}</p>
     </ion-text>
-
-    <!-- Guardar -->
-    <ion-button expand="block" color="primary" (click)="guardar()">Guardar Kit</ion-button>
-
   </ion-list>
+  </div>
+  </div>
 </ion-content>
