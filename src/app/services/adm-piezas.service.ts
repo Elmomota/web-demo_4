@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AdmPiezasService {
-  private baseUrl = `${environment.apiUrl}/gestion_piezas`;
+  private baseUrl = `${environment.apiUrl}/api/gestion_piezas`;
 
   constructor(private http: HttpClient) {}
 

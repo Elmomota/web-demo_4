@@ -1,13 +1,37 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>listPiezas</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin-home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Piezas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="abrirModalAgregar()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">listPiezas</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let pieza of piezas" [color]="pieza.estado ? '' : 'light'">
+      <ion-avatar slot="start" *ngIf="pieza.imagenOut" style="width: 100px; height: 100px;">
+        <img [src]="'data:image/*;base64,' + pieza.imagenOut" style="width: 100%; height: 100%; object-fit: cover;" />
+      </ion-avatar>
+
+      <ion-label>
+        <h2>ID {{pieza.id_pieza}} : {{ pieza.nombre }}</h2>
+        <p>{{ pieza.marca }} - {{ pieza.categoria }}</p>
+        <p *ngIf="!pieza.estado" style="color: red;">[INACTIVA]</p>
+      </ion-label>
+
+      <ion-button fill="solid" color="warning" slot="end" (click)="presentActionSheet(pieza)">
+        Más acciones
+      </ion-button>
+    </ion-item>
+
+    <ion-item *ngIf="piezas.length === 0">
+      <ion-label>No hay piezas registradas.</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

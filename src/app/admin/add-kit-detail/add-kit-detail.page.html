@@ -1,13 +1,42 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>addKitDetail</ion-title>
+    <ion-title>Agregar pieza al kit</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrar()">Cerrar</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">addKitDetail</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+
+    <!-- Selección de pieza -->
+    <ion-item>
+      <ion-label>Pieza</ion-label>
+      <ion-select [(ngModel)]="id_pieza">
+        <ion-select-option *ngFor="let pieza of piezasDisponibles" [value]="pieza.id_pieza">
+          ID: {{pieza.id_pieza}} | {{ pieza.nombre }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-text color="danger" *ngIf="errores.id_pieza">
+      <p class="ion-padding-start">{{ errores.id_pieza }}</p>
+    </ion-text>
+
+    <!-- Cantidad -->
+    <ion-item>
+      <ion-label position="floating">Cantidad</ion-label>
+      <ion-input type="number" [(ngModel)]="cantidad"></ion-input>
+      <ion-button fill="clear" slot="end" (click)="clearCantidad()">
+        <ion-icon name="trash-bin" color="danger"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-text color="danger" *ngIf="errores.cantidad">
+      <p class="ion-padding-start">{{ errores.cantidad }}</p>
+    </ion-text>
+
+    <!-- Botón Guardar -->
+    <ion-button expand="block" color="primary" (click)="guardar()">Agregar al kit</ion-button>
+
+  </ion-list>
 </ion-content>

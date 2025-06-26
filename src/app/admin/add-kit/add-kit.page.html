@@ -1,13 +1,41 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>addKit</ion-title>
+    <ion-title>Agregar Kit</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrar()">Cerrar</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">addKit</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+
+    <!-- Nombre -->
+    <ion-item>
+      <ion-label position="floating">Nombre del Kit</ion-label>
+      <ion-input [(ngModel)]="nombre"></ion-input>
+      <ion-button fill="clear" slot="end" (click)="clearNombre()">
+        <ion-icon name="trash-bin" color="danger"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-text color="danger" *ngIf="errores.nombre">
+      <p class="ion-padding-start">{{ errores.nombre }}</p>
+    </ion-text>
+
+    <!-- Descripción -->
+    <ion-item>
+      <ion-label position="floating">Descripción (opcional)</ion-label>
+      <ion-textarea rows="4" [(ngModel)]="descripcion"></ion-textarea>
+      <ion-button fill="clear" slot="end" (click)="clearDescripcion()">
+        <ion-icon name="trash-bin" color="danger"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-text color="danger" *ngIf="errores.descripcion">
+      <p class="ion-padding-start">{{ errores.descripcion }}</p>
+    </ion-text>
+
+    <!-- Guardar -->
+    <ion-button expand="block" color="primary" (click)="guardar()">Guardar Kit</ion-button>
+
+  </ion-list>
 </ion-content>

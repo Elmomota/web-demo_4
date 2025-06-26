@@ -48,14 +48,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/admin/admin-usuario-editar/admin-usuario-editar.module').then( m => m.AdminUsuarioEditarPageModule)
   },
   {
-    path: 'main-adm',
-    loadChildren: () => import('./admin/main-adm/main-adm.module').then( m => m.MainAdmPageModule)
-  },
-  {
-    path: 'main-adm',
-    loadChildren: () => import('./admin/main-adm/main-adm.module').then( m => m.MainAdmPageModule)
-  },
-  {
     path: 'list-bodega',
     loadChildren: () => import('./admin/list-bodega/list-bodega.module').then( m => m.ListBodegaPageModule)
   },
@@ -66,18 +58,6 @@ const routes: Routes = [
   {
     path: 'view-bodega',
     loadChildren: () => import('./admin/view-bodega/view-bodega.module').then( m => m.ViewBodegaPageModule)
-  },
-  {
-    path: 'edit-user',
-    loadChildren: () => import('./admin/edit-user/edit-user.module').then( m => m.EditUserPageModule)
-  },
-  {
-    path: 'list-users',
-    loadChildren: () => import('./admin/list-users/list-users.module').then( m => m.ListUsersPageModule)
-  },
-  {
-    path: 'view-user',
-    loadChildren: () => import('./admin/view-user/view-user.module').then( m => m.ViewUserPageModule)
   },
   {
     path: 'view-pieza',
@@ -98,10 +78,6 @@ const routes: Routes = [
   {
     path: 'add-bodega',
     loadChildren: () => import('./admin/add-bodega/add-bodega.module').then( m => m.AddBodegaPageModule)
-  },
-  {
-    path: 'add-user',
-    loadChildren: () => import('./admin/add-user/add-user.module').then( m => m.AddUserPageModule)
   },
   {
     path: 'add-kit',

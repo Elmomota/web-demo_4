@@ -1,39 +1,41 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Iniciar Sesión</ion-title>
-  </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
-  <form (ngSubmit)="loginUsuario()">
-    <ion-item>
-      <ion-label position="floating">Correo</ion-label>
-      <ion-input
-        type="email"
-        [(ngModel)]="correoNickname"
-        name="correoNickname"
-        required
-      ></ion-input>
-    </ion-item>
+<ion-content>
+  <div class="fondo">
+  <div class="login-card">
+    <img src="https://i.imgur.com/2ANIGgG.png" alt="Logo" class="logo" />
 
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input
-        type="password"
-        [(ngModel)]="contrasena"
-        name="contrasena"
-        required
-      ></ion-input>
-    </ion-item>
+    <form (ngSubmit)="loginUsuario()" #loginForm="ngForm" novalidate>
+      <ion-item class="custom-input">
+        <ion-label position="floating">Correo</ion-label>
+        <ion-input
+          type="email"
+          name="correoNickname"
+          [(ngModel)]="correoNickname"
+          required
+        ></ion-input>
+      </ion-item>
 
-    <ion-button expand="full" type="submit" class="ion-margin-top">
-      Iniciar Sesión
-    </ion-button>
-  </form>
+      <ion-item class="custom-input">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input
+          type="password"
+          name="contrasena"
+          [(ngModel)]="contrasena"
+          required
+        ></ion-input>
+      </ion-item>
 
-  <div class="ion-text-center ion-padding-top">
-    <p><a (click)="irPagina()">¿Problemas con tu cuenta?</a></p>
-    
+      <ion-button expand="block" type="submit" class="login-button" [disabled]="!loginForm.form.valid">
+        INICIAR SESIÓN
+      </ion-button>
+    </form>
+
+    <div class="ion-text-center ion-padding-top">
+      <a (click)="irPagina()">¿Problemas con tu cuenta?</a>
+    </div>
+  </div>
   </div>
 </ion-content>
 

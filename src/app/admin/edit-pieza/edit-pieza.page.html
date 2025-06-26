@@ -1,13 +1,111 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>editPieza</ion-title>
+    <ion-title>Editar Pieza</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrar()">Cerrar</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">editPieza</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input [(ngModel)]="nombre"></ion-input>
+      <ion-button fill="outline" slot="end" (click)="clearNombre()">
+        <ion-icon name="trash-bin-sharp" color="danger"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-text color="danger" *ngIf="errores.nombre">
+      <p class="ion-padding-start">{{ errores.nombre }}</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-input [(ngModel)]="descripcion"></ion-input>
+      <ion-button fill="outline" slot="end" (click)="clearDescripcion()">
+        <ion-icon name="trash-bin-sharp" color="danger"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-text color="danger" *ngIf="errores.descripcion">
+      <p class="ion-padding-start">{{ errores.descripcion }}</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Número de Serie</ion-label>
+      <ion-input [(ngModel)]="numero_serie"></ion-input>
+      <ion-button fill="outline" slot="end" (click)="clearSerie()">
+        <ion-icon name="trash-bin-sharp" color="danger"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-text color="danger" *ngIf="errores.numero_serie">
+      <p class="ion-padding-start">{{ errores.numero_serie }}</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Stock Mínimo</ion-label>
+      <ion-input type="number" [(ngModel)]="stock_minimo"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="errores.stock_minimo">
+      <p class="ion-padding-start">{{ errores.stock_minimo }}</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Fecha de Vencimiento</ion-label>
+      <ion-datetime display-format="YYYY-MM-DD" [(ngModel)]="fecha_vencimiento"></ion-datetime>
+      <ion-button fill="outline" slot="end" (click)="clearFecha()">
+        <ion-icon name="trash-bin-sharp" color="danger"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-text color="danger" *ngIf="errores.fecha_vencimiento">
+      <p class="ion-padding-start">{{ errores.fecha_vencimiento }}</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Marca</ion-label>
+      <ion-select [(ngModel)]="id_marca">
+        <ion-select-option *ngFor="let m of marcas" [value]="m.id_marca">{{ m.nombre }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-text color="danger" *ngIf="errores.id_marca">
+      <p class="ion-padding-start">{{ errores.id_marca }}</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Categoría</ion-label>
+      <ion-select [(ngModel)]="id_categoria">
+        <ion-select-option *ngFor="let c of categorias" [value]="c.id_categoria">{{ c.nombre }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-text color="danger" *ngIf="errores.id_categoria">
+      <p class="ion-padding-start">{{ errores.id_categoria }}</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label position="floating">Almacén</ion-label>
+      <ion-select [(ngModel)]="id_almacen">
+        <ion-select-option *ngFor="let a of almacenes" [value]="a.id_almacen">{{ a.nombre }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-text color="danger" *ngIf="errores.id_almacen">
+      <p class="ion-padding-start">{{ errores.id_almacen }}</p>
+    </ion-text>
+
+    <ion-item>
+      <ion-label>Imagen Referencial</ion-label>
+      <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+    </ion-item>
+
+    <div style="display: flex; justify-content: center; margin: 12px 0;" *ngIf="imagenOut">
+      <img [src]="'data:image/*;base64,' + imagenOut" style="width: 200px; height: 200px; object-fit: contain;" />
+    </div>
+
+    <ion-button color="medium" expand="block" *ngIf="imagenOut" (click)="eliminarImagen()">
+      Eliminar Imagen
+    </ion-button>
+
+    <ion-button expand="block" color="primary" (click)="guardar()">Guardar Cambios</ion-button>
+
+  </ion-list>
 </ion-content>

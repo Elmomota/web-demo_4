@@ -135,7 +135,7 @@ export class EditBodegaPage implements OnInit {
     };
 
     this.bodegaService.editarBodega(this.bodega.id_almacen, payload).subscribe(() => {
-      this.presentAlert('Éxito', 'Se ha editado el almacén exitosamente.');
+      this.presentAlert('Éxito', 'Se ha modificado el almacén exitosamente.');
       this.modalCtrl.dismiss({ recargar: true });
     });
   }
