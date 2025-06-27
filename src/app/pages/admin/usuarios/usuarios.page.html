@@ -1,6 +1,10 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Usuarios</ion-title>
+    <img class="logo" src="assets/img/logo_clean.png" alt="Logo" slot="start" />
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin-home"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="titulo">Usuarios</ion-title>
     <ion-buttons slot="end">
       <ion-button 
         (click)="irACrearUsuario()" 
@@ -17,6 +21,8 @@
 
 
 <ion-content>
+  <div class="fondo">
+  <div class="card">
   <ion-list *ngIf="usuarios.length > 0; else noUsuarios">
     <ion-item 
       *ngFor="let user of usuarios"
@@ -34,9 +40,10 @@
       </ion-badge>
     </ion-item>
   </ion-list>
-
   <ng-template #noUsuarios>
     <ion-text class="ion-padding">No hay usuarios disponibles</ion-text>
   </ng-template>
+  </div>
+  </div>
 </ion-content>
 

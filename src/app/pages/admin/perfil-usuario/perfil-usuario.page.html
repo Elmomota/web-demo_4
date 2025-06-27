@@ -1,10 +1,15 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Perfil de Usuario</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/usuarios"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="titulo">Perfil de Usuario</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content *ngIf="usuario">
+  <div class="fondo">
+  <div class="card">
   <ion-card class="ion-padding">
     <ion-card-header>
       <ion-card-title>{{ usuario.nombre }}</ion-card-title>
@@ -23,16 +28,19 @@
 
   <ion-row class="ion-padding" justify-content-center>
     <ion-col size="6">
-      <ion-button expand="block" color="warning" [routerLink]="['/admin-usuario-editar']" [queryParams]="{ usuario: jsonStringify(usuario) }"
+      <ion-button expand="block" class="boton-guardar" [routerLink]="['/admin-usuario-editar']" [queryParams]="{ usuario: jsonStringify(usuario) }"
 >
         Editar
       </ion-button>
     </ion-col>
     <ion-col size="6">
-<ion-button expand="block" color="danger" (click)="eliminarUsuario()">
-  Eliminar
-</ion-button>
+  <ion-button expand="block" class="boton-cerrar" (click)="eliminarUsuario()">
+    Eliminar
+  </ion-button>
 
     </ion-col>
   </ion-row>
+    
+  </div>
+  </div>
 </ion-content>
