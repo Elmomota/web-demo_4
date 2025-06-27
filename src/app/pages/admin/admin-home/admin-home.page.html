@@ -1,29 +1,33 @@
 <ion-split-pane contentId="main-content">
-  <ion-menu side="start" menuId="adminMenu" contentId="main-content">
+  <ion-menu class="menu" side="start" menuId="adminMenu" contentId="main-content">
     <ion-header>
-      <ion-toolbar color="primary">
+      <ion-toolbar class="a">
+        <img class="icono-perfil" src="/assets/img/logo_clean.png" slot="start"></img>
         <ion-title>{{ usuario?.p_nombre }} {{ usuario?.a_paterno }}</ion-title>
       </ion-toolbar>
     </ion-header>
 
     <ion-content>
       <ion-list>
-        <ion-item routerLink="/usuarios">
+        <ion-list-header>
+          <ion-label> Herramientas De Gestión</ion-label>
+        </ion-list-header>
+        <ion-item class="item" routerLink="/usuarios">
           <ion-icon slot="start" name="people-outline"></ion-icon>
           <ion-label>Usuarios</ion-label>
         </ion-item>
 
-        <ion-item routerLink="/list-bodega">
+        <ion-item class="item" routerLink="/list-bodega">
           <ion-icon slot="start" name="business-outline"></ion-icon>
           <ion-label>Bodegas</ion-label>
         </ion-item>
 
-        <ion-item routerLink="/list-piezas">
+        <ion-item class="item" routerLink="/list-piezas">
           <ion-icon slot="start" name="hardware-chip-outline"></ion-icon>
           <ion-label>Piezas</ion-label>
         </ion-item>
 
-        <ion-item routerLink="/list-kits">
+        <ion-item class="item" routerLink="/list-kits">
           <ion-icon slot="start" name="cube-outline"></ion-icon>
           <ion-label>Kits</ion-label>
         </ion-item>
