@@ -111,6 +111,9 @@ const routes: Routes = [
     path: 'admin-usuario-crear',
     loadChildren: () => import('./pages/admin/admin-usuario-crear/admin-usuario-crear.module').then( m => m.AdminUsuarioCrearPageModule)
   },
+  
+
+
 
 ];
 
