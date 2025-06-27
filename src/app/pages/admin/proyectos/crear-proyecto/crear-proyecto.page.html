@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Crear Proyecto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (ngSubmit)="crearProyecto()">
+    <ion-item>
+      <ion-label position="floating">Nombre del Proyecto</ion-label>
+      <ion-input [(ngModel)]="form.nombre" name="nombre" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea [(ngModel)]="form.descripcion" name="descripcion"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Fecha de Término</ion-label>
+      <ion-datetime presentation="date" [(ngModel)]="form.fecha_fin" name="fecha_fin"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Estado</ion-label>
+      <ion-select [(ngModel)]="form.id_estado" name="estado">
+        <ion-select-option *ngFor="let e of estados" [value]="e.id_estado">{{ e.nombre }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Responsable</ion-label>
+      <ion-select [(ngModel)]="form.id_usuario_responsable" name="responsable">
+        <ion-select-option *ngFor="let u of usuarios" [value]="u.id_usuario">
+          {{ u.p_nombre }} {{ u.a_paterno }} ({{ u.nombre_tipo_usuario }})
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" color="primary"
+      [disabled]="!form.nombre || !form.id_estado || !form.id_usuario_responsable || !form.fecha_fin">
+      Crear Proyecto
+    </ion-button>
+  </form>
+</ion-content>

@@ -52,5 +52,14 @@ export class ComboboxesService {
   getPiezas(): Observable<any[]> {
   return this.http.get<any[]>(`${this.baseUrl}/piezas`);
 }
+
+getKits(): Observable<any[]> {
+  return this.http.get<any[]>(`${environment.apiUrl}/api/gestion_piezas/kits`);
+}
+
+getKitPiezas(idKit: number): Observable<any[]> {
+  return this.http.get<any[]>(`${environment.apiUrl}/api/gestion_piezas/kit_piezas/${idKit}`);
+}
+
 }
 

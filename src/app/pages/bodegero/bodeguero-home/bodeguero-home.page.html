@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Panel Bodeguero</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="danger" (click)="logout()">Salir</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Inventario</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button expand="full" (click)="irAInventario()">Ver Inventario</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Movimientos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button expand="full" (click)="irAMovimientos()">Ver Historial</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="piezasVencidas.length > 0 || piezasStockBajo.length > 0">
+    <ion-card-header>
+      <ion-card-title>Alertas</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-chip color="danger" (click)="presentPopover('vencidas', $event)">
+        <ion-label>Piezas vencidas</ion-label>
+        <ion-badge color="dark">{{ piezasVencidas.length }}</ion-badge>
+      </ion-chip>
+
+      <ion-chip color="warning" (click)="presentPopover('stock', $event)">
+        <ion-label>Stock bajo</ion-label>
+        <ion-badge color="dark">{{ piezasStockBajo.length }}</ion-badge>
+      </ion-chip>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

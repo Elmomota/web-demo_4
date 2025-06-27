@@ -1,0 +1,130 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Detalle Proyecto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="proyecto" class="ion-padding">
+  <!-- Info general -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ proyecto.nombre }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Descripción:</strong> {{ proyecto.descripcion }}</p>
+      <p><strong>Fecha Inicio:</strong> {{ proyecto.fecha_inicio }}</p>
+      <p><strong>Fecha Fin:</strong> {{ proyecto.fecha_fin }}</p>
+
+      <ion-item>
+        <ion-label>Estado</ion-label>
+        <ion-select [(ngModel)]="proyecto.id_estado" name="estado" (ionChange)="actualizarEstado()">
+          <ion-select-option *ngFor="let estado of estados" [value]="estado.id_estado">
+            {{ estado.nombre }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Responsable</ion-label>
+        <ion-text>{{ proyecto.responsable?.nombre || 'No definido' }}</ion-text>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Usuarios -->
+  <ion-list>
+    <ion-list-header>
+      Usuarios Asignados
+      <ion-button size="small" fill="clear" (click)="editarUsuarios()">
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-button>
+    </ion-list-header>
+    <ion-item *ngFor="let user of proyecto.usuarios">
+      <ion-label>{{ user.nombre_usuario || user.nombre }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Productos -->
+  <ion-list>
+    <ion-list-header>
+      Productos Asignados
+      <ion-button size="small" fill="clear" (click)="editarProductos()">
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-button>
+    </ion-list-header>
+    <ion-item *ngFor="let item of proyecto.piezas">
+      <ion-label>
+        <h2>{{ item.nombre }}</h2>
+        <p>[{{ item.tipo?.toUpperCase() || 'PIEZA' }}] - Cantidad: {{ item.cantidad }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<!-- Modal Edición de Usuarios -->
+<ion-modal [isOpen]="modalUsuarios" (didDismiss)="modalUsuarios = false">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="secondary">
+        <ion-title>Editar Usuarios</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="modalUsuarios = false">Cerrar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item *ngFor="let usuario of todosUsuarios">
+          <ion-label>{{ usuario.nombre }}</ion-label>
+          <ion-toggle [(ngModel)]="usuario.asignado" name="usuario-{{usuario.id_usuario}}"></ion-toggle>
+        </ion-item>
+      </ion-list>
+      <ion-button expand="block" (click)="guardarUsuarios()">Guardar Cambios</ion-button>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<!-- Modal Edición de Productos -->
+<ion-modal [isOpen]="modalProductos" (didDismiss)="modalProductos = false">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar color="tertiary">
+        <ion-title>Agregar Producto</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="modalProductos = false">Cerrar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-item>
+        <ion-label>Tipo</ion-label>
+        <ion-select [(ngModel)]="productoTipo" name="tipoProducto" (ionChange)="cargarOpcionesProducto()">
+          <ion-select-option value="pieza">Pieza</ion-select-option>
+          <ion-select-option value="kit">Kit</ion-select-option>
+          <ion-select-option value="kit_pieza">Kit de Piezas</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="productosDisponibles.length > 0">
+        <ion-label>Producto</ion-label>
+        <ion-select [(ngModel)]="productoSeleccionado" name="productoSeleccionado">
+          <ion-select-option *ngFor="let p of productosDisponibles" [value]="p">
+            {{ p.nombre }} (Stock: {{ p.stock }})
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="productoSeleccionado">
+        <ion-label position="floating">Cantidad</ion-label>
+        <ion-input type="number" name="cantidad" [(ngModel)]="cantidadSeleccionada"
+          [min]="1" [max]="productoSeleccionado.stock"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" color="success"
+        (click)="agregarProducto()"
+        [disabled]="!productoSeleccionado || cantidadSeleccionada < 1 || cantidadSeleccionada > productoSeleccionado.stock">
+        Agregar al Proyecto
+      </ion-button>
+    </ion-content>
+  </ng-template>
+</ion-modal>

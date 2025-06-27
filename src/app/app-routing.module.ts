@@ -111,7 +111,39 @@ const routes: Routes = [
     path: 'admin-usuario-crear',
     loadChildren: () => import('./pages/admin/admin-usuario-crear/admin-usuario-crear.module').then( m => m.AdminUsuarioCrearPageModule)
   },
+  {
+    path: 'bodeguero-home',
+    loadChildren: () => import('./pages/bodegero/bodeguero-home/bodeguero-home.module').then( m => m.BodegueroHomePageModule)
+  },
+  {
+    path: 'listar-inventario',
+    loadChildren: () => import('./pages/bodegero/listar-inventario/listar-inventario.module').then( m => m.ListarInventarioPageModule)
+  },
+  {
+    path: 'modificar-stock',
+    loadChildren: () => import('./pages/bodegero/modificar-stock/modificar-stock.module').then( m => m.ModificarStockPageModule)
+  },
+  {
+    path: 'movimientos',
+    loadChildren: () => import('./pages/bodegero/movimientos/movimientos.module').then( m => m.MovimientosPageModule)
+  },
+  {
+    path: 'detalle-proyecto/:id',
+    loadChildren: () => import('./pages/admin/proyectos/detalle-proyecto/detalle-proyecto.module').then( m => m.DetalleProyectoPageModule)
+  },
+  {
+    path: 'proyectos',
+    loadChildren: () => import('./pages/admin/proyectos/proyectos/proyectos.module').then( m => m.ProyectosPageModule)
+  },
+  {
+    path: 'crear-proyecto',
+    loadChildren: () => import('./pages/admin/proyectos/crear-proyecto/crear-proyecto.module').then( m => m.CrearProyectoPageModule)
+  },
+
   
+
+  
+
 
 
 
