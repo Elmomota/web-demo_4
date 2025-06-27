@@ -1,3 +1,18 @@
-<p>
-  alertas-popover works!
-</p>
+<ion-content class="ion-padding" style="min-width: 450x;">
+  <ion-list>
+    <ion-item lines="none" *ngFor="let p of piezas">
+      <ion-label>
+        <h3>
+          <ion-icon name="alert-circle-outline" color="danger"></ion-icon>
+          {{ p.nombre }}
+        </h3>
+        <p *ngIf="tipo === 'vencidas'">
+          <strong>Venció:</strong> {{ p.fecha_vencimiento | date:'longDate' }}
+        </p>
+        <p *ngIf="tipo === 'stock'">
+          <strong>Stock:</strong> {{ p.cantidad }} / mín: {{ p.stock_minimo }}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

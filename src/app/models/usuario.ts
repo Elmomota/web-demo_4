@@ -11,3 +11,11 @@ export interface Usuario {
   id_almacen?: number;
   estado: boolean;
 }
+
+
+export interface UsuarioLoginUsuario {
+  id_usuario: number;
+  id_tipo_usuario: number; // 👈 Asegúrate de incluir esta propiedad
+  id_almacen?: number;
+
+}

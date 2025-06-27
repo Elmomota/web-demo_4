@@ -12,8 +12,9 @@ export class MovimientosService {
 
   constructor(private http: HttpClient) {}
 
+  // ✅ Usar este para historial de un bodeguero
   obtenerPorSucursal(id_almacen: number, filtros?: any): Observable<any[]> {
-    let params = new HttpParams().set('id_almacen', id_almacen.toString());
+    let params = new HttpParams();
 
     if (filtros) {
       Object.keys(filtros).forEach(key => {
@@ -26,6 +27,7 @@ export class MovimientosService {
     return this.http.get<any[]>(`${this.baseUrl}/sucursal/${id_almacen}`, { params });
   }
 
+  // ✅ Este para administrador/contador que ve todos
   obtenerGeneral(filtros?: any): Observable<any[]> {
     let params = new HttpParams();
 
