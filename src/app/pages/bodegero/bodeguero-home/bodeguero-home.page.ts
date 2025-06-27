@@ -66,13 +66,13 @@ async ngOnInit() {
 
 
   irAInventario() {
-    this.router.navigate(['/bodeguero-inventario'], {
+    this.router.navigate(['/listar-inventario'], {
       state: { id_usuario: this.usuario.id_usuario }
     });
   }
 
   irAMovimientos() {
-    this.router.navigate(['/bodeguero-movimientos'], {
+    this.router.navigate(['/movimientos'], {
       state: { id_almacen: this.usuario.id_almacen }
     });
   }

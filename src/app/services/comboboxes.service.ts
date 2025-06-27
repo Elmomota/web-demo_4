@@ -1,3 +1,4 @@
+/*src\app\services\comboboxes.service.ts**/
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -51,6 +52,14 @@ export class ComboboxesService {
 
   getPiezas(): Observable<any[]> {
   return this.http.get<any[]>(`${this.baseUrl}/piezas`);
+}
+
+getUsuarios(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.baseUrl}/usuarios`);
+}
+
+getProyectos(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.baseUrl}/proyectos`);
 }
 }
 

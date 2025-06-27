@@ -1,13 +1,80 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>movimientos</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/bodeguero-home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Historial de Movimientos</ion-title>
+    <ion-buttons slot="end">
+      <ion-chip color="danger" (click)="mostrarPopover('vencidas', $event)">
+        <ion-icon name="alert-circle" color="light" slot="start"></ion-icon>
+        <ion-label>{{ piezasVencidas.length }}</ion-label>
+      </ion-chip>
+      <ion-chip color="warning" (click)="mostrarPopover('stock', $event)">
+        <ion-icon name="warning" color="light" slot="start"></ion-icon>
+        <ion-label>{{ piezasStockBajo.length }}</ion-label>
+      </ion-chip>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">movimientos</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header><ion-card-title>Filtros</ion-card-title></ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="stacked">Fecha exacta</ion-label>
+        <ion-input placeholder="YYYY-MM-DD" [(ngModel)]="filtros.fecha" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Rango de fechas</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Inicio: YYYY-MM-DD" [(ngModel)]="filtros.fecha_inicio" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Fin: YYYY-MM-DD" [(ngModel)]="filtros.fecha_fin" type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Pieza</ion-label>
+        <ion-select [(ngModel)]="filtros.id_pieza">
+          <ion-select-option *ngFor="let p of piezas" [value]="p.id_pieza">{{ p.nombre }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Usuario</ion-label>
+        <ion-select [(ngModel)]="filtros.id_usuario">
+          <ion-select-option *ngFor="let u of usuarios" [value]="u.id_usuario">{{ u.nombre }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Proyecto</ion-label>
+        <ion-select [(ngModel)]="filtros.id_proyecto">
+          <ion-select-option *ngFor="let pr of proyectos" [value]="pr.id_proyecto">{{ pr.nombre }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-button expand="full" color="primary" (click)="buscarMovimientos()">Buscar</ion-button>
+      <ion-button expand="full" fill="clear" color="medium" (click)="limpiarFiltros()">Limpiar</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-item *ngFor="let m of movimientos">
+      <ion-label>
+        <h3><strong>{{ m.nombre_pieza }}</strong> ({{ m.nombre_tipo_movimiento }})</h3>
+        <p>Fecha: {{ m.fecha }}</p>
+        <p>Cantidad: {{ m.cantidad }} | Usuario: {{ m.nombre_usuario }}</p>
+        <p *ngIf="m.observaciones">Observaciones: {{ m.observaciones }}</p>
+        <p *ngIf="m.nombre_proyecto">Proyecto: {{ m.nombre_proyecto }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-item *ngIf="movimientos.length === 0">
+    <ion-label>No hay movimientos registrados.</ion-label>
+  </ion-item>
 </ion-content>
