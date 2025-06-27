@@ -44,7 +44,7 @@ loginUsuario() {
             });
             break;
           case 2: // Bodeguero
-            this.navCtrl.navigateForward('/bodega', {
+            this.navCtrl.navigateForward('/bodeguero-home', {
               queryParams: { usuario: JSON.stringify(usuario) }
             });
             break;
