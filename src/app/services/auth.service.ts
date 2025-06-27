@@ -1,7 +1,10 @@
+/**src\app\services\auth.service.ts */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Usuario } from 'src/app/models/usuario';  // Asegúrate que esta ruta sea correcta
+import { UsuarioLoginUsuario } from 'src/app/models/usuario';  // Asegúrate que esta ruta sea correcta
+
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +20,12 @@ export class AuthService {
    * @param contrasena - Contraseña del usuario
    * @returns Observable con un objeto tipo Usuario
    */
-  loginUsuario(correo: string, contrasena: string): Observable<Usuario> {
+  loginUsuario(correo: string, contrasena: string): Observable<UsuarioLoginUsuario> {
     const formData = new FormData();
     formData.append('correo', correo);
     formData.append('contrasena', contrasena);
 
-    return this.http.post<Usuario>(`${this.apiUrl}/api/login`, formData);
+    return this.http.post<UsuarioLoginUsuario>(`${this.apiUrl}/api/login`, formData);
   }
   enviarCodigoRecuperacion(data: FormData) {
   return this.http.post(`${this.apiUrl}/api/user/send-recovery-code`, data);

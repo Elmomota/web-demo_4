@@ -1,8 +1,10 @@
+/**src\app\pages\login\login.page.ts*/
 import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { Usuario } from 'src/app/models/usuario';
+import { UsuarioLoginUsuario } from 'src/app/models/usuario';
 
 
 
@@ -32,37 +34,28 @@ loginUsuario() {
   }
 
   this.authService.loginUsuario(this.correoNickname, this.contrasena).subscribe({
-    next: (usuario: Usuario) => {
+    next: (usuario: UsuarioLoginUsuario) => {
       console.log('Usuario recibido:', usuario);
 
-      this.storageService.guardarSesion(usuario).then(() => {
-        // Filtrado por tipo de usuario (id_tipo_usuario)
-        switch (usuario.id_tipo_usuario) {
-          case 1: // Admin
-            this.navCtrl.navigateForward('/admin-home', {
-              queryParams: { usuario: JSON.stringify(usuario) }
-            });
-            break;
-          case 2: // Bodeguero
-            this.navCtrl.navigateForward('/bodeguero-home', {
-              queryParams: { usuario: JSON.stringify(usuario) }
-            });
-            break;
-          case 3: // Contador
-            this.navCtrl.navigateForward('/contador', {
-              queryParams: { usuario: JSON.stringify(usuario) }
-            });
-            break;
-          case 4: // Cliente
-            this.navCtrl.navigateForward('/home', {
-              queryParams: { usuario: JSON.stringify(usuario) }
-            });
-            break;
-          default:
-            this.mostrarAlerta('Tipo de usuario no reconocido.');
-            break;
-        }
-      });
+    this.storageService.guardarSesion(usuario).then(() => {
+      switch (usuario.id_tipo_usuario) {
+        case 1: // Admin
+          this.navCtrl.navigateForward('/admin-home');
+          break;
+        case 2: // Bodeguero
+          this.navCtrl.navigateForward('/bodeguero-home');
+          break;
+        case 3: // Contador
+          this.navCtrl.navigateForward('/contador');
+          break;
+        case 4: // Cliente
+          this.navCtrl.navigateForward('/home');
+          break;
+        default:
+          this.mostrarAlerta('Tipo de usuario no reconocido.');
+          break;
+      }
+    });
     },
     error: (error) => {
       console.error('Error completo:', error);
