@@ -3,25 +3,27 @@
     <ion-title>Panel Bodeguero</ion-title>
 
     <ion-buttons slot="end">
-      <ion-chip color="danger" (click)="abrirPopover('vencidas', $event)">
-        <ion-label>Piezas vencidas</ion-label>
+      <ion-chip class="vencidas" (click)="abrirPopover('vencidas', $event)">
+        <ion-label class="texto">Piezas vencidas</ion-label>
         <ion-badge>{{ piezasVencidas.length }}</ion-badge>
       </ion-chip>
 
-      <ion-chip color="warning" (click)="abrirPopover('stock', $event)">
-        <ion-label>Stock bajo</ion-label>
+      <ion-chip class="bajo-stock" (click)="abrirPopover('stock', $event)">
+        <ion-label class="texto">Stock bajo</ion-label>
         <ion-badge>{{ piezasStockBajo.length }}</ion-badge>
       </ion-chip>
 
-      <ion-button color="danger" (click)="logout()">Salir</ion-button>
+      <ion-button class="boton-cerrar" (click)="logout()">Salir</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+  <div class="fondo">
+  <div class="card">
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Inventario</ion-card-title>
+      <ion-card-title class="titulo">Inventario</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-button expand="full" (click)="irAInventario()">Ver Inventario</ion-button>
@@ -30,11 +32,12 @@
 
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Movimientos</ion-card-title>
+      <ion-card-title class="titulo">Movimientos</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-button expand="full" (click)="irAMovimientos()">Ver Historial</ion-button>
     </ion-card-content>
   </ion-card>
-
+  </div>
+  </div>
 </ion-content>
