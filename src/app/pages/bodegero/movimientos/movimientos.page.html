@@ -3,13 +3,13 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/bodeguero-home"></ion-back-button>
     </ion-buttons>
-    <ion-title>Historial de Movimientos</ion-title>
+    <ion-title class="titulo">Historial de Movimientos</ion-title>
     <ion-buttons slot="end">
-      <ion-chip color="danger" (click)="mostrarPopover('vencidas', $event)">
+      <ion-chip class="vencidas" (click)="mostrarPopover('vencidas', $event)">
         <ion-icon name="alert-circle" color="light" slot="start"></ion-icon>
         <ion-label>{{ piezasVencidas.length }}</ion-label>
       </ion-chip>
-      <ion-chip color="warning" (click)="mostrarPopover('stock', $event)">
+      <ion-chip class="bajo-stock" (click)="mostrarPopover('stock', $event)">
         <ion-icon name="warning" color="light" slot="start"></ion-icon>
         <ion-label>{{ piezasStockBajo.length }}</ion-label>
       </ion-chip>
@@ -18,6 +18,8 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <div class="fondo">
+  <div class="card">
   <ion-card>
     <ion-card-header><ion-card-title>Filtros</ion-card-title></ion-card-header>
     <ion-card-content>
@@ -56,9 +58,10 @@
           <ion-select-option *ngFor="let pr of proyectos" [value]="pr.id_proyecto">{{ pr.nombre }}</ion-select-option>
         </ion-select>
       </ion-item>
-
-      <ion-button expand="full" color="primary" (click)="buscarMovimientos()">Buscar</ion-button>
-      <ion-button expand="full" fill="clear" color="medium" (click)="limpiarFiltros()">Limpiar</ion-button>
+      <div class="centrar">
+      <ion-button expand="full" class="boton-buscar" (click)="buscarMovimientos()">Buscar</ion-button>
+      <ion-button expand="full" fill="clear" class="boton-limpiar" (click)="limpiarFiltros()">Limpiar</ion-button>
+      </div>
     </ion-card-content>
   </ion-card>
 
@@ -77,4 +80,6 @@
   <ion-item *ngIf="movimientos.length === 0">
     <ion-label>No hay movimientos registrados.</ion-label>
   </ion-item>
+  </div>
+  </div>
 </ion-content>

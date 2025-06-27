@@ -3,13 +3,13 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/bodeguero-home"></ion-back-button>
     </ion-buttons>
-    <ion-title>Inventario</ion-title>
+    <ion-title class="titulo">Inventario</ion-title>
     <ion-buttons slot="end">
-      <ion-chip color="danger" (click)="abrirPopover('vencidas', $event)">
+      <ion-chip class="vencidas" (click)="abrirPopover('vencidas', $event)">
         <ion-icon name="alert-circle" color="light" slot="start"></ion-icon>
         <ion-label>{{ piezasVencidas.length }}</ion-label>
       </ion-chip>
-      <ion-chip color="warning" (click)="abrirPopover('stock', $event)">
+      <ion-chip class="bajo-stock" (click)="abrirPopover('stock', $event)">
         <ion-icon name="warning" color="light" slot="start"></ion-icon>
         <ion-label>{{ piezasStockBajo.length }}</ion-label>
       </ion-chip>
@@ -18,6 +18,8 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <div class="fondo">
+  <div class="card">
   <ion-item>
     <ion-input [(ngModel)]="search" placeholder="Buscar por nombre o descripción"></ion-input>
   </ion-item>
@@ -28,10 +30,10 @@
       <ion-select-option *ngFor="let cat of categorias" [value]="cat.id_categoria">{{ cat.nombre }}</ion-select-option>
     </ion-select>
   </ion-item>
-
-  <ion-button expand="block" (click)="buscar()">Buscar</ion-button>
-  <ion-button expand="block" fill="clear" (click)="limpiar()">Limpiar</ion-button>
-
+  <div class="centrar">
+  <ion-button class="boton-buscar" expand="block" (click)="buscar()">Buscar</ion-button>
+  <ion-button class="boton-limpiar" expand="block" fill="clear" (click)="limpiar()">Limpiar</ion-button>
+  </div>
 <ion-list>
   <ion-item *ngFor="let p of piezas">
     <ion-label>
@@ -49,4 +51,6 @@
   <ion-item *ngIf="piezas.length === 0">
     <ion-label>No hay piezas encontradas.</ion-label>
   </ion-item>
+  </div>
+  </div>
 </ion-content>
