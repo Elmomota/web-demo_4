@@ -1,13 +1,18 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Modificar Stock</ion-title>
+    <ion-buttons slot="start">
+      <ion-button class="boton-cancelar" (click)="cerrar()">Cancelar</ion-button>
+    </ion-buttons>
+    <ion-title class="titulo">Modificar Stock</ion-title>
     <ion-buttons slot="end">
-      <ion-button color="medium" (click)="cerrar()">Cancelar</ion-button>
+      <ion-button class="boton" expand="block" (click)="guardar()">Guardar</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+  <div class="fondo">
+  <div class="card">
   <ion-item>
     <ion-label position="stacked">Pieza</ion-label>
     <ion-text>{{ pieza.nombre }}</ion-text>
@@ -36,6 +41,6 @@
     <ion-label position="stacked">Observaciones (opcional)</ion-label>
     <ion-textarea [(ngModel)]="observaciones"></ion-textarea>
   </ion-item>
-
-  <ion-button expand="block" color="success" (click)="guardar()">Guardar</ion-button>
+  </div>
+  </div>
 </ion-content>
