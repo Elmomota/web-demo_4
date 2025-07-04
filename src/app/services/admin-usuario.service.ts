@@ -1,8 +1,5 @@
-// src/app/services/admin-usuario.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Usuario } from '../models/usuario';
-import { UsuarioExtendido } from '../models/usuario-extendido';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,27 +10,28 @@ export class AdminUsuarioService {
 
   constructor(private http: HttpClient) {}
 
-  listarUsuarios(): Observable<UsuarioExtendido[]> {
-    return this.http.get<UsuarioExtendido[]>(`${this.apiUrl}/listar`);
+  listarUsuarios(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/listar`);
   }
   
   editarUsuario(usuario: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/editar`, usuario);
   }
+
   eliminarUsuario(id_usuario: number): Observable<any> {
-  return this.http.put(`${this.apiUrl}/editar`, {
-    id_usuario,
-    estado: false
-  });
-}
-desactivarUsuario(id_usuario: number): Observable<any> {
-  return this.http.put(`${this.apiUrl}/desactivar`, null, {
-    params: { id_usuario }
-  });
-}
-crearUsuario(usuario: any): Observable<any> {
-  return this.http.post(`${this.apiUrl}/crear-usuario`, usuario);
-}
+    return this.http.put(`${this.apiUrl}/editar`, {
+      id_usuario,
+      estado: false
+    });
+  }
 
+  desactivarUsuario(id_usuario: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/desactivar`, null, {
+      params: { id_usuario }
+    });
+  }
 
+  crearUsuario(usuario: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/crear-usuario`, usuario);
+  }
 }

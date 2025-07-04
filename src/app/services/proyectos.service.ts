@@ -15,7 +15,7 @@ export class ProyectosService {
 
   // Obtener usuarios y piezas asignadas al proyecto
 getDetalleProyecto(id: number) {
-  return this.http.get(`${this.apiUrl}/${id}`);
+  return this.http.get(`${this.apiUrl}/detalle/${id}`);
 }
 
 
@@ -58,5 +58,7 @@ getDetalleProyecto(id: number) {
   quitarProductoProyecto(data: { id_detalle: number; id_proyecto: number }) {
     return this.http.request('delete', `${this.apiUrl}/pieza/remover`, { body: data });
   }
+
+
   
 }

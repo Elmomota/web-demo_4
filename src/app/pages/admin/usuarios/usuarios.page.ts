@@ -1,7 +1,6 @@
-// src/app/pages/usuarios/usuarios.page.ts
 import { Component, OnInit } from '@angular/core';
 import { AdminUsuarioService } from 'src/app/services/admin-usuario.service';
-import { UsuarioExtendido } from 'src/app/models/usuario-extendido';
+import { Usuario } from 'src/app/models/usuario';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -11,14 +10,20 @@ import { NavController } from '@ionic/angular';
   standalone: false
 })
 export class UsuariosPage implements OnInit {
-  usuarios: UsuarioExtendido[] = [];
+  usuarios: Usuario[] = [];
 
   constructor(
-     private navCtrl: NavController,
+    private navCtrl: NavController,
     private adminUsuarioService: AdminUsuarioService
   ) {}
 
   ngOnInit() {
+    // Se ejecuta una sola vez
+    this.cargarUsuarios();
+  }
+
+  ionViewWillEnter() {
+    // Se ejecuta cada vez que entras a esta vista (incluso después de editar o desactivar)
     this.cargarUsuarios();
   }
 
@@ -32,13 +37,14 @@ export class UsuariosPage implements OnInit {
       }
     });
   }
-  verPerfil(user: UsuarioExtendido) {
-  this.navCtrl.navigateForward('/perfil-usuario', {
-    queryParams: { usuario: JSON.stringify(user) }
-  });
-}
-irACrearUsuario() {
-  this.navCtrl.navigateForward('/admin-usuario-crear');
-}
 
+  verPerfil(user: Usuario) {
+    this.navCtrl.navigateForward('/perfil-usuario', {
+      state: { usuario: user }
+    });
+  }
+
+  irACrearUsuario() {
+    this.navCtrl.navigateForward('/admin-usuario-crear');
+  }
 }

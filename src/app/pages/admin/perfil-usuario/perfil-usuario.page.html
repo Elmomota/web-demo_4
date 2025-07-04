@@ -9,38 +9,49 @@
 
 <ion-content *ngIf="usuario">
   <div class="fondo">
-  <div class="card">
-  <ion-card class="ion-padding">
-    <ion-card-header>
-      <ion-card-title>{{ usuario.nombre }}</ion-card-title>
-      <ion-card-subtitle>{{ usuario.correo }}</ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      <p><strong>Dirección:</strong> {{ usuario.direccion || 'Sin información' }}</p>
-      <p><strong>Comuna:</strong> {{ usuario.nombre_comuna }}</p>
-      <p><strong>Cargo:</strong> {{ usuario.nombre_tipo_usuario }}</p>
-      <p><strong>Almacén:</strong> {{ usuario.id_almacen || 'No asignado' }}</p>
-      <ion-badge color="{{ usuario.estado ? 'success' : 'danger' }}">
-        {{ usuario.estado ? 'Activo' : 'Inactivo' }}
-      </ion-badge>
-    </ion-card-content>
-  </ion-card>
+    <div class="card">
+      <ion-card class="ion-padding">
+        <ion-card-header>
+          <ion-card-title>
+            {{ usuario.p_nombre }} {{ usuario.s_nombre || '' }} {{ usuario.a_paterno }} {{ usuario.a_materno || '' }}
+          </ion-card-title>
+          <ion-card-subtitle>{{ usuario.correo }}</ion-card-subtitle>
+        </ion-card-header>
 
-  <ion-row class="ion-padding" justify-content-center>
-    <ion-col size="6">
-      <ion-button expand="block" class="boton-guardar" [routerLink]="['/admin-usuario-editar']" [queryParams]="{ usuario: jsonStringify(usuario) }"
->
-        Editar
-      </ion-button>
-    </ion-col>
-    <ion-col size="6">
-  <ion-button expand="block" class="boton-cerrar" (click)="eliminarUsuario()">
-    Eliminar
-  </ion-button>
+        <ion-card-content>
+          <p><strong>Dirección:</strong> {{ usuario.direccion || 'Sin información' }}</p>
+          <p><strong>Comuna:</strong> {{ usuario.nombre_comuna }}</p>
+          <p><strong>Región:</strong> {{ usuario.nombre_region }}</p>
+          <p><strong>Cargo:</strong> {{ usuario.nombre_tipo_usuario }}</p>
+          <p><strong>Almacén:</strong> {{ usuario.nombre_almacen }}</p>
+          <ion-badge [color]="usuario.estado ? 'success' : 'danger'">
+            {{ usuario.estado ? 'Activo' : 'Inactivo' }}
+          </ion-badge>
+        </ion-card-content>
+      </ion-card>
 
-    </ion-col>
-  </ion-row>
-    
-  </div>
+      <ion-row class="ion-padding" justify-content-center>
+        <ion-col size="6">
+<ion-button
+  expand="block"
+  class="boton-guardar"
+  [routerLink]="['/admin-usuario-editar']"
+  [state]="{ usuario: usuario }">
+  Editar
+</ion-button>
+
+        </ion-col>
+        <ion-col size="6">
+          <ion-button
+            expand="block"
+            class="boton-cerrar"
+            color="danger"
+            (click)="eliminarUsuario()"
+          >
+            Eliminar
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
   </div>
 </ion-content>

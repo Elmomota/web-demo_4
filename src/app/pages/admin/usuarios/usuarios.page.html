@@ -32,7 +32,7 @@
       [class.item-disabled]="!user.estado"
     >
       <ion-label>
-        <h2>{{ user.nombre }}</h2>
+        <h2>{{ user.p_nombre }} {{ user.s_nombre || '' }} {{ user.a_paterno }} {{ user.a_materno || '' }}</h2> 
         <p>{{ user.correo }}</p>
       </ion-label>
       <ion-badge [color]="user.estado ? 'success' : 'danger'">

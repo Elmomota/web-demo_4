@@ -9,83 +9,85 @@
 
 <ion-content *ngIf="usuarioForm">
   <div class="fondo">
-  <div class="card">
-  <form [formGroup]="usuarioForm" (ngSubmit)="guardarCambios()" class="ion-padding">
-    <ion-item class="item">
-      <ion-label position="floating">Primer Nombre</ion-label>
-      <ion-input formControlName="p_nombre"></ion-input>
-    </ion-item>
+    <div class="card">
+      <form [formGroup]="usuarioForm" (ngSubmit)="guardarCambios()" class="ion-padding">
 
-    <ion-item class="item">
-      <ion-label position="floating">Segundo Nombre</ion-label>
-      <ion-input formControlName="s_nombre"></ion-input>
-    </ion-item>
+        <ion-item class="item">
+          <ion-label position="floating">Primer Nombre</ion-label>
+          <ion-input formControlName="p_nombre"></ion-input>
+        </ion-item>
 
-    <ion-item class="item">
-      <ion-label position="floating">Apellido Paterno</ion-label>
-      <ion-input formControlName="a_paterno"></ion-input>
-    </ion-item>
+        <ion-item class="item">
+          <ion-label position="floating">Segundo Nombre</ion-label>
+          <ion-input formControlName="s_nombre"></ion-input>
+        </ion-item>
 
-    <ion-item class="item">
-      <ion-label position="floating">Apellido Materno</ion-label>
-      <ion-input formControlName="a_materno"></ion-input>
-    </ion-item>
+        <ion-item class="item">
+          <ion-label position="floating">Apellido Paterno</ion-label>
+          <ion-input formControlName="a_paterno"></ion-input>
+        </ion-item>
 
-    <ion-item class="item">
-      <ion-label position="floating">Correo</ion-label>
-      <ion-input formControlName="correo" type="email"></ion-input>
-    </ion-item>
+        <ion-item class="item">
+          <ion-label position="floating">Apellido Materno</ion-label>
+          <ion-input formControlName="a_materno"></ion-input>
+        </ion-item>
 
-    <ion-item class="item">
-      <ion-label position="floating">Dirección</ion-label>
-      <ion-input formControlName="direccion"></ion-input>
-    </ion-item>
+        <ion-item class="item">
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input type="email" formControlName="correo"></ion-input>
+        </ion-item>
 
-    <ion-item class="item">
-      <ion-label>Región</ion-label>
-      <ion-select formControlName="id_region" (ionChange)="cargarComunas($event.detail.value)">
-        <ion-select-option *ngFor="let region of regiones" [value]="region.id_region">
-          {{ region.nombre }}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
+        <ion-item class="item">
+          <ion-label position="floating">Dirección</ion-label>
+          <ion-input formControlName="direccion"></ion-input>
+        </ion-item>
 
-    <ion-item class="item">
-      <ion-label>Comuna</ion-label>
-      <ion-select formControlName="id_comuna">
-        <ion-select-option *ngFor="let comuna of comunas" [value]="comuna.id_comuna">
-          {{ comuna.nombre }}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
+        <!-- Región -->
+        <ion-item class="item">
+          <ion-label>Región</ion-label>
+          <ion-select formControlName="id_region" (ionChange)="cargarComunas($event.detail.value)">
+            <ion-select-option *ngFor="let region of regiones" [value]="region.id_region">
+              {{ region.nombre }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
 
-    <ion-item class="item">
-      <ion-label>Tipo de Usuario</ion-label>
-      <ion-select formControlName="id_tipo_usuario">
-        <ion-select-option *ngFor="let tipo of tiposUsuario" [value]="tipo.id_tipo_usuario">
-          {{ tipo.nombre }}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
+        <!-- Comuna -->
+        <ion-item class="item">
+          <ion-label>Comuna</ion-label>
+          <ion-select formControlName="id_comuna">
+            <ion-select-option *ngFor="let comuna of comunas" [value]="comuna.id_comuna">
+              {{ comuna.nombre }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
 
-    <ion-item class="item">
-      <ion-label>Almacén</ion-label>
-      <ion-select formControlName="id_almacen">
-        <ion-select-option *ngFor="let alm of almacenes" [value]="alm.id_almacen">
-          {{ alm.nombre }}
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
+        <!-- Tipo de Usuario -->
+        <ion-item class="item">
+          <ion-label>Tipo de Usuario</ion-label>
+          <ion-select formControlName="id_tipo_usuario">
+            <ion-select-option *ngFor="let tipo of tiposUsuario" [value]="tipo.id_tipo_usuario">
+              {{ tipo.nombre }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
 
-    <ion-item class="item">
-      <ion-label>Estado</ion-label>
-      <ion-toggle formControlName="estado"></ion-toggle>
-    </ion-item>
+        <!-- Almacén -->
+        <ion-item class="item">
+          <ion-label>Almacén</ion-label>
+          <ion-select formControlName="id_almacen">
+            <ion-select-option *ngFor="let alm of almacenes" [value]="alm.id_almacen">
+              {{ alm.nombre }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
 
-    <ion-button class="boton-guardar" expand="block" type="submit" [disabled]="usuarioForm.invalid">
-      Guardar Cambios
-    </ion-button>
-  </form>
-  </div>
+        <!-- Botón Guardar -->
+        <ion-button expand="block" type="submit" [disabled]="usuarioForm.invalid">
+          Guardar Cambios
+        </ion-button>
+
+      </form>
+    </div>
   </div>
 </ion-content>

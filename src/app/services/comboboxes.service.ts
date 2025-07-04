@@ -42,9 +42,10 @@ export class ComboboxesService {
     return this.http.get<any[]>(`${this.baseUrl}/estados-proyecto`);
   }
 
-  getRolesProyecto(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/roles-proyecto`);
-  }
+getRolesProyecto(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.baseUrl}/roles-proyecto`);
+}
+
 
   getAlmacenes(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/almacenes`);
@@ -54,7 +55,6 @@ export class ComboboxesService {
   return this.http.get<any[]>(`${this.baseUrl}/piezas`);
 }
 
-<<<<<<< HEAD
 getKits(): Observable<any[]> {
   return this.http.get<any[]>(`${environment.apiUrl}/api/gestion_piezas/kits`);
 }
@@ -63,7 +63,6 @@ getKitPiezas(idKit: number): Observable<any[]> {
   return this.http.get<any[]>(`${environment.apiUrl}/api/gestion_piezas/kit_piezas/${idKit}`);
 }
 
-=======
 getUsuarios(): Observable<any[]> {
   return this.http.get<any[]>(`${this.baseUrl}/usuarios`);
 }
@@ -71,6 +70,8 @@ getUsuarios(): Observable<any[]> {
 getProyectos(): Observable<any[]> {
   return this.http.get<any[]>(`${this.baseUrl}/proyectos`);
 }
->>>>>>> 8504d41fd53072e6965856f7d65d14bc2a6e9603
+
+
+
 }
 

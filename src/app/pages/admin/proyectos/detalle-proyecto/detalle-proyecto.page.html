@@ -17,7 +17,7 @@
 
       <ion-item>
         <ion-label>Estado</ion-label>
-        <ion-select [(ngModel)]="proyecto.id_estado" name="estado" (ionChange)="actualizarEstado()">
+        <ion-select [(ngModel)]="proyecto.id_estado" (ionChange)="actualizarEstado()">
           <ion-select-option *ngFor="let estado of estados" [value]="estado.id_estado">
             {{ estado.nombre }}
           </ion-select-option>
@@ -26,12 +26,18 @@
 
       <ion-item>
         <ion-label>Responsable</ion-label>
-        <ion-text>{{ proyecto.responsable?.nombre || 'No definido' }}</ion-text>
+        <ion-text>
+          {{
+            proyecto.responsable?.nombre_usuario ||
+            (proyecto.responsable?.p_nombre + ' ' + proyecto.responsable?.a_paterno) ||
+            'No definido'
+          }}
+        </ion-text>
       </ion-item>
     </ion-card-content>
   </ion-card>
 
-  <!-- Usuarios -->
+  <!-- Usuarios Asignados -->
   <ion-list>
     <ion-list-header>
       Usuarios Asignados
@@ -40,11 +46,13 @@
       </ion-button>
     </ion-list-header>
     <ion-item *ngFor="let user of proyecto.usuarios">
-      <ion-label>{{ user.nombre_usuario || user.nombre }}</ion-label>
+      <ion-label>
+        {{ user.nombre_usuario }}
+      </ion-label>
     </ion-item>
   </ion-list>
 
-  <!-- Productos -->
+  <!-- Productos Asignados -->
   <ion-list>
     <ion-list-header>
       Productos Asignados
@@ -61,9 +69,9 @@
   </ion-list>
 </ion-content>
 
-<!-- Modal Edición de Usuarios -->
+<!-- Modal Usuarios -->
 <ion-modal [isOpen]="modalUsuarios" (didDismiss)="modalUsuarios = false">
-  <ng-template>
+  <div class="ion-page">
     <ion-header>
       <ion-toolbar color="secondary">
         <ion-title>Editar Usuarios</ion-title>
@@ -72,19 +80,53 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-item *ngFor="let usuario of todosUsuarios">
-          <ion-label>{{ usuario.nombre }}</ion-label>
-          <ion-toggle [(ngModel)]="usuario.asignado" name="usuario-{{usuario.id_usuario}}"></ion-toggle>
+
+    <ion-content class="ion-padding">
+      <ng-container *ngIf="todosUsuarios.length > 0; else cargandoUsuarios">
+        <ion-list>
+          <ion-item *ngFor="let usuario of todosUsuarios">
+            <ion-label class="ion-text-wrap">
+              {{ usuario.nombre_usuario || (usuario.p_nombre + ' ' + usuario.a_paterno) }}
+            </ion-label>
+
+            <ion-select
+              *ngIf="usuario.asignado"
+              [(ngModel)]="usuario.id_rol_proyecto"
+              interface="popover"
+              placeholder="Rol"
+              class="rol-select"
+            >
+              <ion-select-option *ngFor="let rol of rolesProyecto" [value]="rol.id_rol_proyecto">
+                {{ rol.nombre }}
+              </ion-select-option>
+            </ion-select>
+
+            <ion-toggle
+              slot="end"
+              [(ngModel)]="usuario.asignado"
+              name="usuario-{{ usuario.id_usuario }}"
+            ></ion-toggle>
+          </ion-item>
+        </ion-list>
+      </ng-container>
+
+      <ng-template #cargandoUsuarios>
+        <ion-item>
+          <ion-label>Cargando usuarios...</ion-label>
+          <ion-spinner slot="end" name="dots"></ion-spinner>
         </ion-item>
-      </ion-list>
-      <ion-button expand="block" (click)="guardarUsuarios()">Guardar Cambios</ion-button>
+      </ng-template>
+
+      <ion-button expand="block" color="primary" class="ion-margin-top" (click)="guardarUsuarios()">
+        Guardar Cambios
+      </ion-button>
     </ion-content>
-  </ng-template>
+  </div>
 </ion-modal>
 
-<!-- Modal Edición de Productos -->
+
+
+<!-- ✅ Modal Productos -->
 <ion-modal [isOpen]="modalProductos" (didDismiss)="modalProductos = false">
   <ng-template>
     <ion-header>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 
@@ -8,7 +8,7 @@ import { ProyectosService } from 'src/app/services/proyectos.service';
   styleUrls: ['./proyectos.page.scss'],
   standalone: false
 })
-export class ProyectosPage implements OnInit {
+export class ProyectosPage {
   proyectos: any[] = [];
   cargando = true;
 
@@ -17,7 +17,8 @@ export class ProyectosPage implements OnInit {
     private navCtrl: NavController
   ) {}
 
-  ngOnInit() {
+  // 🔄 Se ejecuta cada vez que la vista se muestra (incluso al volver atrás)
+  ionViewWillEnter() {
     this.obtenerProyectos();
   }
 
