@@ -21,11 +21,11 @@
   <div class="fondo">
   <div class="card">
   <ion-item>
-    <ion-input [(ngModel)]="search" placeholder="Buscar por nombre o descripción"></ion-input>
+    <ion-input class="text" [(ngModel)]="search" placeholder="Buscar por nombre o descripción"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label>Categoría</ion-label>
+    <ion-label class="text" >Categoría</ion-label>
     <ion-select [(ngModel)]="id_categoria" interface="popover">
       <ion-select-option *ngFor="let cat of categorias" [value]="cat.id_categoria">{{ cat.nombre }}</ion-select-option>
     </ion-select>

@@ -11,12 +11,12 @@
 
       <ion-item>
         <ion-label class="text" position="floating">Nueva contraseña</ion-label>
-        <ion-input type="password" [(ngModel)]="nuevaContrasena"></ion-input>
+        <ion-input class="text" type="password" [(ngModel)]="nuevaContrasena"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label class="text" position="floating">Confirmar contraseña</ion-label>
-        <ion-input type="password" [(ngModel)]="confirmarContrasena"></ion-input>
+        <ion-input class="text" type="password" [(ngModel)]="confirmarContrasena"></ion-input>
       </ion-item>
 
       <ion-button class="contraseña-button" expand="block" (click)="cambiarContrasena()">Cambiar contraseña</ion-button>
